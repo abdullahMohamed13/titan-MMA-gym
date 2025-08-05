@@ -54,5 +54,5 @@ module.exports = {
     compress: true,
     open: true
   },
-  mode: 'development'
+  mode: 'production'
 };
