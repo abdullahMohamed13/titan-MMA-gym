@@ -1,0 +1,37 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+build/
+.next/
+out/
+
+# local env files
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# test coverage
+coverage/
+
+# cache
+.cache/
+.parcel-cache/
+
+# flowbite-react generated files
+.flowbite-react/class-list.json
+.flowbite-react/pid

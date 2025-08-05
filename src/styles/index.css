@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@import "flowbite";
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+  body {
+    @apply m-0;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+  a {
+    @apply cursor-pointer
+  }
+  button {
+    @apply rounded-lg border-1 border-transparent text-xl py-2 px-4 cursor-pointer transition-colors duration-300;
+  }
+  h1 {
+    @apply text-5xl
+  }
+  h2 {
+    @apply text-4xl
+  }
+  h3 {
+    @apply text-3xl
+  }
+  h4 {
+    @apply text-2xl
+  }
+  h5 {
+    @apply text-xl
+  }
+  h6 {
+    @apply text-lg
+  }
+  html {
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+  }
+}
+
+/* ScrollStack specific styles */
+.scroll-stack-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-stack-container * {
+  scroll-behavior: auto !important;
+}
+
+/* Ensure proper stacking context */
+.scroll-stack-card {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, filter;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  
+  /* Light mode (default) */
+  --color-bg: #f5f7fa;
+  --color-text: #2C3E50;
+  --color-card: #ffffff;
+  --color-border: #d1d5db;
+  --color-primary: #e20000;
+  --color-secondary: #9b59b6;
+  --color-reset: #ff6b6b;
+  --color-reset-hover: #ff8c8c;
+}
+
+/* Dark mode variables */
+.dark {
+  --color-bg: #213547;
+  --color-text: #ffffff;
+  --color-card: #2d4961;
+  --color-border: #3e6384;
+  --color-primary: #e20000;
+  --color-secondary: #8E44AD;
+  --color-reset: #c0392b;
+  --color-reset-hover: #e74c3c;
+}
