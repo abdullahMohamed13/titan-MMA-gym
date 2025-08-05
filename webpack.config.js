@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const flowbiteReact = require("flowbite-react/plugin/webpack");
 
@@ -25,9 +26,17 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: './public/index.html'
-  }), flowbiteReact()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html'
+    }),
+    flowbiteReact(),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'public', to: '.' }
+      ]
+    })
+  ],
   devServer: {
     static: [
       { directory: path.join(__dirname, 'dist') },
