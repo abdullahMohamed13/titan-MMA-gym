@@ -63,38 +63,34 @@ export default function Stack({
       : [
           {
             id: 1,
-            img: "/images/gallery/face-off.jpg",
+            img: "/images/gallery/gym2.jpg",
           },
           {
             id: 2,
-            img: "/images/gallery/stance.jpg",
-          },
-          {
-            id: 3,
             img: "/images/gallery/islam-javier-mendez.webp",
           },
           {
-            id: 4,
+            id: 3,
             img: "/images/gallery/guard.jpg",
           },
           {
-            id: 5,
+            id: 4,
             img: "/images/gallery/karate.jpg",
           },
           {
-            id: 6,
+            id: 5,
             img: "/images/gallery/fighter-kid.jpg",
           },
           {
-            id: 7,
+            id: 6,
             img: "/images/gallery/helmet-guy.jpg",
           },
           {
-            id: 8,
+            id: 7,
             img: "/images/gallery/gym.jpg",
           },
           {
-            id: 9,
+            id: 8,
             img: "/images/gallery/khamzat.jpg",
           },
         ],

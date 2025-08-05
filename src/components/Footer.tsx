@@ -1,7 +1,6 @@
 import Stack from "./animated/Stack";
 import { Divider } from "@mui/material";
 import { LocationOn, CallEndSharp, Email, LinkedIn, GitHub, Person } from "@mui/icons-material";
-import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 
 const branches = [
 "Eastside – 45 Al-Salam Street, Alexandria, Egypt",
