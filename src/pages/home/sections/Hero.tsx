@@ -12,8 +12,8 @@ export default function Hero() {
         poster="images/just-brand-logo.png"
         aria-label="Background training video"
       >
-        <source src="videos/Hero.mp4" type="video/mp4" />
-        <source src="videos/Hero.webm" type="video/webm" />
+        <source src="videos/hero.mp4" type="video/mp4" />
+        <source src="videos/hero.webm" type="video/webm" />
         {/* Fallback for very old browsers */}
         <div className="flex items-center justify-center w-full h-full bg-black text-white">
           <img

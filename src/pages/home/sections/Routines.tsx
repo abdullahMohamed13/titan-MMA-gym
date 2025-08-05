@@ -36,7 +36,7 @@ const routines: RoutinesProps[] = [
         classUrl: '',
         coachUrl: '/coaches/Mike Winkeljohn',
         price: 130,
-        imgSrc: '/images/brand-logo.png',
+        imgSrc: 'images/routines/striking.jpg',
         cardBgColor: '#1e40af',
         targetAudience: ['self-defense learners', 'cardio lovers']
     },
@@ -59,7 +59,7 @@ const routines: RoutinesProps[] = [
         classUrl: '',
         coachUrl: '/coaches/Rener Gracie',
         price: 100,
-        imgSrc: '/images/brand-logo.png',
+        imgSrc: '/images/routines/bjj.jpg',
         cardBgColor: '#7c3aed',
         targetAudience: ['Ground game enthusiasts', 'people interested in belt ranking']
     },
