@@ -15,6 +15,7 @@ const ProfileCard: React.FC<CoachesProps> = ({ name, img, specials }) => {
         <div className="relative mb-4">
           <div className="absolute inset-0 rounded-full blur-3xl opacity-30 bg-gradient-to-tr from-[#e20000] to-[#ff6b6b]" />
           <img
+            loading="lazy"
             className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-[#1f324f] object-cover shadow-lg"
             src={img}
             alt={`${name} profile`}

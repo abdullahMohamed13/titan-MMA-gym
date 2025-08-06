@@ -63,7 +63,7 @@ export default function Stack({
       : [
           {
             id: 1,
-            img: "/images/gallery/gym2.jpg",
+            img: "/images/gallery/gym2.webp",
           },
           {
             id: 2,
@@ -71,27 +71,27 @@ export default function Stack({
           },
           {
             id: 3,
-            img: "/images/gallery/guard.jpg",
+            img: "/images/gallery/guard.webp",
           },
           {
             id: 4,
-            img: "/images/gallery/karate.jpg",
+            img: "/images/gallery/karate.webp",
           },
           {
             id: 5,
-            img: "/images/gallery/fighter-kid.jpg",
+            img: "/images/gallery/fighter-kid.webp",
           },
           {
             id: 6,
-            img: "/images/gallery/helmet-guy.jpg",
+            img: "/images/gallery/helmet-guy.webp",
           },
           {
             id: 7,
-            img: "/images/gallery/gym.jpg",
+            img: "/images/gallery/gym.webp",
           },
           {
             id: 8,
-            img: "/images/gallery/khamzat.jpg",
+            img: "/images/gallery/khamzat.webp",
           },
         ],
   );
@@ -144,6 +144,7 @@ export default function Stack({
               }}
             >
               <img
+                loading="lazy"
                 src={card.img}
                 alt={`card-${card.id}`}
                 className="pointer-events-none h-full w-full object-cover"

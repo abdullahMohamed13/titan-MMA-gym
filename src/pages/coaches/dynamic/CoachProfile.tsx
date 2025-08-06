@@ -68,7 +68,7 @@ export default function CoachProfile() {
                                     <OpenInNewIcon />
                                 </a>
                             </div>
-                            <img src={currentCoach.img} width={400} height={400}
+                            <img loading="lazy" src={currentCoach.img} width={400} height={400}
                                 className='rounded-lg border-2 border-white' alt={`Coach ${currentCoach.name} Photo`} />
                         </motion.div>
                     </AnimatePresence>

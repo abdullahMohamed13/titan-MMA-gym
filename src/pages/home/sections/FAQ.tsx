@@ -8,6 +8,7 @@ import {
   Box,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { InfoOutline } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
 const faqs = [
@@ -92,7 +93,7 @@ export default function FAQ() {
                 <Typography fontWeight={600}>{faq.question}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography color="text.secondary">{faq.answer}</Typography>
+                <Typography color="text.secondary"><InfoOutline /> {faq.answer}</Typography>
               </AccordionDetails>
             </Accordion>
           ))}

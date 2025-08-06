@@ -9,15 +9,16 @@ export default function Hero() {
         autoPlay
         loop
         playsInline
-        poster="images/just-brand-logo.png"
+        poster="images/just-brand-logo.webp"
         aria-label="Background training video"
       >
         <source src="videos/hero.mp4" type="video/mp4" />
-        <source src="videos/hero.webm" type="video/webm" />
+        <source src="videos/hero.mkv" />
         {/* Fallback for very old browsers */}
         <div className="flex items-center justify-center w-full h-full bg-black text-white">
           <img
-            src="images/just-brand-logo.png"
+            loading="lazy"
+            src="images/titan-gym-2.webp"
             alt="Gym logo"
             className="max-w-xs mx-auto"
           />
@@ -28,9 +29,10 @@ export default function Hero() {
       <div className="relative z-10 flex flex-col gap-6 items-start justify-center h-full px-6 sm:px-10 md:px-16 max-w-3xl">
         <div className="w-full bg-black/60 backdrop-blur-sm rounded-2xl p-8 flex flex-col gap-6 text-left">
         <img
-        src="/images/hero-section-brand-logo.png"
-        alt="Titan Gym Logo"
-        className="flex my-0 mx-auto items-center justify-center gap-4 w-20 h-20 sm:w-25 sm:h-25 md:w-30 md:h-30 rounded-full border-2 border-white shadow-xl object-cover"
+          loading="lazy"
+          src="/images/hero-section-brand-logo.webp"
+          alt="Titan Gym Logo"
+          className="flex my-0 mx-auto items-center justify-center gap-4 w-20 h-20 sm:w-25 sm:h-25 md:w-30 md:h-30 rounded-full border-2 border-white shadow-xl object-cover"
         />
           <p className="text-white text-sm sm:text-base md:text-lg font-medium leading-relaxed">
             WE ARE TITAN GYM.

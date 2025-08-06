@@ -53,7 +53,7 @@
 //       <Container maxWidth="xl" sx={{backgroundColor: 'primary.main', padding: '8px 0'}}>
 //         <Toolbar disableGutters>
 //           <Link to={'/'}>
-//             <img src='/images/brand-logo.png' className='hidden sm:flex' height={50} width={50} />
+//             <img src='/images/brand-logo.webp' className='hidden sm:flex' height={50} width={50} />
 //           </Link>
 
 //           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -110,7 +110,7 @@
 //               </Button>
 //             ))}
 //           </Box>
-//             <img src='/images/brand-logo.png' className='flex sm:hidden' height={50} width={50}/>
+//             <img src='/images/brand-logo.webp' className='flex sm:hidden' height={50} width={50}/>
 //           <Box sx={{ flexGrow: 0, display: 'flex', gap: '10px' }}>
 //             {/* <Locales /> */}
 //           <>

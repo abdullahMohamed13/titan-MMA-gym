@@ -31,7 +31,7 @@ const initialState: {initialCoaches: CoachesProps[]} = {
         {
             id: 2,
             name: 'Khabib Nurmagomedov',
-            img: '/images/coaches/khabib.jpg',
+            img: '/images/coaches/khabib.webp',
             description: 'Since retiring, Khabib inherited his late father’s program and has coached fighters like Islam Makhachev and Usman Nurmagomedov, carrying on a dominant Dagestani wrestling-based system rooted in sambo and freestyle wrestling ',
             specials: ['Wrestling', 'Sambo'],
             article: 'https://en.wikipedia.org/wiki/Khabib_Nurmagomedov'
@@ -39,7 +39,7 @@ const initialState: {initialCoaches: CoachesProps[]} = {
         {
             id: 3,
             name: 'Kayla Harrison',
-            img: '/images/coaches/Kayla Harrison.jpg',
+            img: '/images/coaches/Kayla Harrison.webp',
             description: "Master the art of throws, trips, and clinch control with techniques that work in both traditional Judo and MMA. Learn how to off-balance opponents, execute powerful throws, and dominate in close-range situations, just like two-time Olympic gold medalist Kayla Harrison.",
             specials: [' Olympic Judo gold medalist', 'MMA'],
             article: 'https://en.wikipedia.org/wiki/Kayla_Harrison',
@@ -48,7 +48,7 @@ const initialState: {initialCoaches: CoachesProps[]} = {
         {
             id: 4,
             name: 'Rener Gracie',
-            img: '/images/coaches/rener-garcie.jpg',
+            img: '/images/coaches/rener-garcie.webp',
             description: 'Fifth-degree BJJ black belt from the legendary Gracie family, coach to Ronda Rousey, Brian Ortega, Lyoto Machida, plus celebrity clients. Founder of Gracie University and Gracie Survival Tactics program recognized in law enforcement training',
             specials: ['BJJ Black Belt'],
             article: 'https://en.wikipedia.org/wiki/Rener_Gracie'

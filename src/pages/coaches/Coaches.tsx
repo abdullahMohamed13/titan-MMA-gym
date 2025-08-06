@@ -16,7 +16,7 @@ export default function Coaches() {
             <CoachesList />
         </div>
 
-        {/* <Card imgSrc="images/coaches/abdallah-mohamed.png" imgAlt="Coach">Click</Card> */}
+        {/* <Card imgSrc="images/coaches/abdallah-mohamed.webp" imgAlt="Coach">Click</Card> */}
         {/* <ToastComponent /> */}
     </Container>
 }

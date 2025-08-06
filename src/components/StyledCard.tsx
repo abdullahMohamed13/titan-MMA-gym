@@ -61,7 +61,7 @@ export default function StyledCard() {
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
-          <img />
+          <img loading="lazy" />
         }
         action={
           <IconButton aria-label="settings">
@@ -74,7 +74,7 @@ export default function StyledCard() {
       <CardMedia
         component="img"
         height="194"
-        image="/images/brand-logo.png"
+        image="/images/brand-logo.webp"
         alt="Paella dish"
       />
       <CardContent>
