@@ -1,223 +1,72 @@
-// import * as React from 'react';
-// import AppBar from '@mui/material/AppBar';
-// import Box from '@mui/material/Box';
-// import Toolbar from '@mui/material/Toolbar';
-// import IconButton from '@mui/material/IconButton';
-// import Typography from '@mui/material/Typography';
-// import Menu from '@mui/material/Menu';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import Container from '@mui/material/Container';
-// import Button from '@mui/material/Button';
-// import Tooltip from '@mui/material/Tooltip';
-// import MenuItem from '@mui/material/MenuItem';
-// import Locales from './Locales'
-// import { useNavigate, Link } from 'react-router-dom';
-// import PersonAdd from '@mui/icons-material/PersonAdd';
-// import Avatar from '@mui/material/Avatar';
-// import ListItemIcon from '@mui/material/ListItemIcon';
-// import Divider from '@mui/material/Divider';
-// import Settings from '@mui/icons-material/Settings';
-// import Logout from '@mui/icons-material/Logout';
+import { useNavigate, Link } from 'react-router-dom';
 
-// const pages = ['Classes', 'Coaches', 'Students', 'Products', 'Events'];
-// const settings = ['Profile', 'Logout'];
+interface PagesProps {
+  label: string
+  url: string
+}
 
-// function ResponsiveAppBar() {
-//   const navigate = useNavigate();
+interface NavBarProps {
+  pages: PagesProps[]
+}
+export default function NavBar({pages}: NavBarProps) {
+  const navigate = useNavigate()
+  return (
+    <>
+      {/* Top bar */}
+      <nav className="bg-primary border-border border-b">
+        <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+          <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+            <img
+              loading="lazy"
+              src="images/just-brand-logo.webp"
+              width={80}
+              height={80}
+              alt="Gym Logo"
+            />
+            <span className="self-center text-2xl font-semibold whitespace-nowrap text-text">
+              Titan-MMA Gym
+            </span>
+          </Link>
+          <div className="flex items-center space-x-6 rtl:space-x-reverse">
+            <a
+              href="#"
+              className="text-sm text-primary"
+            >
+              Sign Up
+            </a>
+            <a
+              href="#"
+// #00b3b3
+// #00a6d6
+// #008080
+// #00ffff
+              className="text-sm text-primary bg-[#e20000] hover:bg-[#e20000]/60 p-3 rounded-xl"
+            >
+              Log In
+            </a>
+          </div>
+        </div>
+      </nav>
 
-//   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-//   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
-//   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-//     setAnchorElNav(event.currentTarget);
-//   };
-//   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-//   const open = Boolean(anchorEl);
-//   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-//     setAnchorEl(event.currentTarget);
-//   };
-//   const handleClose = () => {
-//     setAnchorEl(null);
-//   };
-
-//   const handleCloseNavMenu = () => {
-//     setAnchorElNav(null);
-//   };
-
-//   const handleCloseUserMenu = () => {
-//     setAnchorElUser(null);
-//   };
-
-//   return (
-//     <AppBar position="static">
-//       <Container maxWidth="xl" sx={{backgroundColor: 'primary.main', padding: '8px 0'}}>
-//         <Toolbar disableGutters>
-//           <Link to={'/'}>
-//             <img src='/images/brand-logo.webp' className='hidden sm:flex' height={50} width={50} />
-//           </Link>
-
-//           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-//             <IconButton
-//               size="large"
-//               aria-label="account of current user"
-//               aria-controls="menu-appbar"
-//               aria-haspopup="true"
-//               onClick={handleOpenNavMenu}
-//               color="inherit"
-//             >
-//               <MenuIcon />
-//             </IconButton>
-//             <Menu
-//               id="menu-appbar"
-//               anchorEl={anchorElNav}
-//               anchorOrigin={{
-//                 vertical: 'bottom',
-//                 horizontal: 'left',
-//               }}
-//               keepMounted
-//               transformOrigin={{
-//                 vertical: 'top',
-//                 horizontal: 'left',
-//               }}
-//               open={Boolean(anchorElNav)}
-//               onClose={handleCloseNavMenu}
-//               sx={{ display: { xs: 'block', md: 'none' } }}
-//             >
-//               {pages.map((page, index) => (
-//                 <MenuItem key={index} onClick={() => {
-//                   handleCloseNavMenu
-//                   navigate(`/${page.toLowerCase()}`);
-//                   }}>
-//                   <Typography sx={{ textAlign: 'center' }}>
-//                     {page}
-//                   </Typography>
-//                 </MenuItem>
-//               ))}
-//             </Menu>
-//           </Box>
-
-//           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-//             {pages.map((page, key) => (
-//               <Button
-//                 key={key}
-//                 onClick={() => {
-//                   navigate(`/${page.toLowerCase()}`);
-//                   handleCloseNavMenu();
-//                 }}
-//                 sx={{ my: 2, color: 'white', display: 'block', fontSize: '21px', fontWeight: 'bold' }}
-//               >
-//                 {page}
-//               </Button>
-//             ))}
-//           </Box>
-//             <img src='/images/brand-logo.webp' className='flex sm:hidden' height={50} width={50}/>
-//           <Box sx={{ flexGrow: 0, display: 'flex', gap: '10px' }}>
-//             {/* <Locales /> */}
-//           <>
-//             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-//               <Tooltip title="Account settings">
-//                 <IconButton
-//                   onClick={handleClick}
-//                   size="small"
-//                   sx={{ ml: 2 }}
-//                   aria-controls={open ? 'account-menu' : undefined}
-//                   aria-haspopup="true"
-//                   aria-expanded={open ? 'true' : undefined}
-//                 >
-//                   <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-//                 </IconButton>
-//               </Tooltip>
-//             </Box>
-//             <Menu
-//               anchorEl={anchorEl}
-//               id="account-menu"
-//               open={open}
-//               onClose={handleClose}
-//               onClick={handleClose}
-//               slotProps={{
-//                 paper: {
-//                   elevation: 0,
-//                   sx: {
-//                     overflow: 'visible',
-//                     filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-//                     mt: 1.5,
-//                     '& .MuiAvatar-root': {
-//                       width: 32,
-//                       height: 32,
-//                       ml: -0.5,
-//                       mr: 1,
-//                     },
-//                     '&::before': {
-//                       content: '""',
-//                       display: 'block',
-//                       position: 'absolute',
-//                       top: 0,
-//                       right: 14,
-//                       width: 10,
-//                       height: 10,
-//                       bgcolor: 'background.paper',
-//                       transform: 'translateY(-50%) rotate(45deg)',
-//                       zIndex: 0,
-//                     },
-//                   },
-//                 },
-//               }}
-//               transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-//               anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-//             >
-//               <MenuItem onClick={handleClose}>
-//                 <Avatar /> Profile
-//               </MenuItem>
-//               <MenuItem onClick={handleClose}>
-//                 <Avatar /> My account
-//               </MenuItem>
-//               <Divider />
-//               <MenuItem onClick={handleClose}>
-//                 <ListItemIcon>
-//                   <PersonAdd fontSize="small" />
-//                 </ListItemIcon>
-//                 Add another account
-//               </MenuItem>
-//               <MenuItem onClick={handleClose}>
-//                 <ListItemIcon>
-//                   <Settings fontSize="small" />
-//                 </ListItemIcon>
-//                 Settings
-//               </MenuItem>
-//               <MenuItem onClick={handleClose}>
-//                 <ListItemIcon>
-//                   <Logout fontSize="small" />
-//                 </ListItemIcon>
-//                 Logout
-//               </MenuItem>
-//             </Menu>
-//           </>
-//             <Menu
-//               sx={{ mt: '45px' }}
-//               id="menu-appbar"
-//               anchorEl={anchorElUser}
-//               anchorOrigin={{
-//                 vertical: 'top',
-//                 horizontal: 'right',
-//               }}
-//               keepMounted
-//               transformOrigin={{
-//                 vertical: 'top',
-//                 horizontal: 'right',
-//               }}
-//               open={Boolean(anchorElUser)}
-//               onClose={handleCloseUserMenu}
-//             >
-//               {settings.map((setting) => (
-//                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-//                   <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
-//                 </MenuItem>
-//               ))}
-//             </Menu>
-//           </Box>
-//         </Toolbar>
-//       </Container>
-//     </AppBar>
-//   );
-// }
-// export default ResponsiveAppBar;
+      {/* Bottom menu */}
+      <nav className="bg-[#e20000]">
+        <div className="max-w-screen-xl px-4 py-3 mx-auto">
+          <div className="flex items-center">
+            <ul className="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
+              {pages.map((page, index) => (
+                <li key={index}>
+                  <a onClick={() => navigate(page.url)}
+                    className="text-white hover:underline cursor-pointer"
+                    target={page.label === 'products' ? '_blank' : '_self'}
+                    aria-current="page">
+                    {page.label.toUpperCase()}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </>
+  );
+}

@@ -3,8 +3,9 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 import './styles/index.css'
 
 // Components
-import Navbar from './components/AppBar'
+import Navbar from './components/NavBar'
 import PageSkeleton from './components/PageSkeleton'
+import ProductsLayout from './layouts/ProductsLayout'
 // Pages
 import Home from './pages/home/Home'
 import { ErrorMessage } from './pages/error-pages/ErrorMessage'
@@ -18,11 +19,20 @@ const Coaches = lazy(() => import('./pages/coaches/Coaches'))
 const Events = lazy(() => import('./pages/events/Events'))
 const Students = lazy(() => import('./pages/students/Students'))
 
+const mainPages = [
+  {label: 'home', url: '/'},
+  {label: 'classes', url: '/classes'},
+  {label: 'coaches', url: '/coaches'},
+  {label: 'students', url: '/students'},
+  {label: 'products', url: '/products'},
+  {label: 'events', url: '/events'}
+];
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <>
-      <Navbar />
+      <Navbar pages={mainPages} />
       <main className="bg-background text-text">
         <Outlet />
         <Footer />
@@ -75,14 +85,6 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/products',
-        element: (
-          <Suspense fallback={<PageSkeleton />}>
-            <ProductsPage />
-          </Suspense>
-        ),
-      },
-      {
         path: '/events',
         element: (
           <Suspense fallback={<PageSkeleton />}>
@@ -94,6 +96,20 @@ const router = createBrowserRouter([
         path: '*',
         element: <NotFoundPage />,
       },
+    ],
+  },
+  {
+    path: '/products',
+    element: <ProductsLayout />,
+    children: [
+      {
+      index: true, 
+      element: (
+        <Suspense fallback={<PageSkeleton />}>
+            <ProductsPage />
+        </Suspense>
+        )
+    }
     ],
   },
 ])
