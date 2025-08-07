@@ -22,6 +22,7 @@ export default function CoachProfile() {
 
     document.title = `Titan MMA - Coach ${decodedName}`;
     const currentCoach = initialCoaches.find(coach => coach.name === decodedName);
+    console.log(currentCoach!.img);
 
     const getCoachIcon = (coachName: string) => {
         const name = coachName.toLowerCase();
@@ -164,12 +165,16 @@ export default function CoachProfile() {
                                                         backgroundClip: 'text',
                                                         WebkitBackgroundClip: 'text',
                                                         WebkitTextFillColor: 'transparent',
-                                                        mb: 2
                                                     }}
                                                 >
                                                     Coach {currentCoach.name}
                                                 </Typography>
-                                                
+                                                <Typography 
+                                                    variant='subtitle1'
+                                                    sx={{mb: 2}}
+                                                >
+                                                    {currentCoach.title}
+                                                </Typography>
                                                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
                                                     {currentCoach.specials.map((special, index) => (
                                                         <Chip

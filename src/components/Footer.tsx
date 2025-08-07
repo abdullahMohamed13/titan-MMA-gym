@@ -102,3 +102,9 @@ export default function Footer() {
         </div>
     </footer>
 }
+// Partenars
+// Baraka Supplements
+// Hayabusa Fightwear
+// RDX Sports
+// Tatami Fightwear
+// MyProtein

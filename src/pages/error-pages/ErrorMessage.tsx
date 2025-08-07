@@ -1,6 +1,6 @@
 import { useRouteError } from "react-router-dom";
 
-export function ErrorMessage() {
+export default function ErrorMessage() {
   const error = useRouteError() as Error;
   return (
     <div className="min-h-screen flex items-center justify-center bg-background text-text p-6">

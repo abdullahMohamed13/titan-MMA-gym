@@ -1,7 +1,7 @@
 import { Box, Button, Container } from "@mui/material";
 import HeaderComponent from "../../components/HeaderComponent";
 
-export function NotFoundPage() {
+export default function NotFoundPage() {
   return (
     <Container className="min-h-screen flex items-center justify-center bg-background text-text p-6">
       <Box className="text-center max-w-md">

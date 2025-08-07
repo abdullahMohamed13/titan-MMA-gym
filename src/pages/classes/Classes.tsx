@@ -10,6 +10,7 @@ import SportsMmaIcon from '@mui/icons-material/SportsMma';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import HeaderComponent from '../../components/HeaderComponent';
 
 export default function Classes() {
     document.title = 'Titan MMA - Classes';
@@ -65,40 +66,11 @@ export default function Classes() {
             <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
                 {/* Header Section */}
                 <Box sx={{ textAlign: 'center', mb: 8 }}>
-                    <Typography 
-                        variant="h2" 
-                        component="h1" 
-                        sx={{
-                            fontWeight: 900,
-                            background: 'linear-gradient(45deg, #e20000, #ff6b35, #f1c40f)',
-                            backgroundClip: 'text',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            mb: 3,
-                            transition: 'all 0.8s ease',
-                            transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
-                            opacity: isLoaded ? 1 : 0
-                        }}
-                    >
-                        ELITE MMA CLASSES
-                    </Typography>
+                    <HeaderComponent 
+                        headingText='ELITE MMA CLASSES'
+                        subHeadingText='Train with UFC champions and world-class coaches. Choose your path to greatness.'
+                    />
                     
-                    <Typography 
-                        variant="h6" 
-                        sx={{
-                            color: '#b0b0b0',
-                            mb: 6,
-                            maxWidth: 800,
-                            mx: 'auto',
-                            lineHeight: 1.6,
-                            transition: 'all 0.8s ease 0.2s',
-                            transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
-                            opacity: isLoaded ? 1 : 0
-                        }}
-                    >
-                        Train with UFC champions and world-class coaches. Choose your path to greatness.
-                    </Typography>
-
                     {/* Stats Row */}
                     <Box 
                         sx={{ 

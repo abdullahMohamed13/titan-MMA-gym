@@ -4,12 +4,11 @@ import {
   AccordionDetails,
   Typography,
   Container,
-  useMediaQuery,
   Box,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { InfoOutline } from "@mui/icons-material";
-import { useTheme } from "@mui/material/styles";
+import HeaderComponent from "../../../components/HeaderComponent";
 
 const faqs = [
   {
@@ -45,8 +44,6 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  const theme = useTheme();
-  const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
 
   return (
     <Box
@@ -57,15 +54,7 @@ export default function FAQ() {
       }}
     >
       <Container>
-        <Typography
-          variant={isSmUp ? "h3" : "h4"}
-          component="h2"
-          gutterBottom
-          fontWeight={700}
-          sx={{ mb: 4 }}
-        >
-          FAQ (Frequently Asked Questions)
-        </Typography>
+        <HeaderComponent headingText="FAQ (Frequently Asked Questions)"/>
         <Box
           sx={{
             display: "grid",
@@ -87,13 +76,26 @@ export default function FAQ() {
             >
               <AccordionSummary
                 id={`panel-header-${index}`}
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon color="info" />}
                 aria-controls={`panel-content-${index}`}
+                sx={{
+                  background: 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
+                  backdropFilter: 'blur(10px)',
+                  borderRadius: 3,
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                      transform: 'translateY(-5px)',
+                      boxShadow: '0 15px 35px rgba(0,0,0,0.3)',
+                      border: '1px solid rgba(226, 0, 0, 0.3)'
+                  }}}
               >
                 <Typography fontWeight={600}>{faq.question}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography color="text.secondary"><InfoOutline /> {faq.answer}</Typography>
+                <Typography>
+                  <InfoOutline />
+                  {faq.answer}
+                </Typography>
               </AccordionDetails>
             </Accordion>
           ))}

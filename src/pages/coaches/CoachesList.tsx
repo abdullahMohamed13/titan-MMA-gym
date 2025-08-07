@@ -6,7 +6,8 @@ import {
     Box, 
     Chip, 
     Avatar,
-    Button
+    Button,
+    Tooltip
 } from '@mui/material';
 import { initialCoaches } from '../../features/slices/coachesSlice';
 import { Link } from 'react-router-dom';
@@ -156,9 +157,9 @@ export default function CoachesList() {
                                 🎯 Specializations:
                             </Typography>
                             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                {coach.specials.map((special, idx) => (
+                                {coach.specials.map((special, index) => (
                                     <Chip 
-                                        key={idx}
+                                        key={index}
                                         label={special} 
                                         size="small"
                                         sx={{
@@ -201,30 +202,32 @@ export default function CoachesList() {
                             >
                                 👨‍🏫 View Profile
                             </Button>
-                            <Button
-                                variant="outlined"
-                                size="small"
-                                component="a"
-                                href={coach.article}
-                                target="_blank"
-                                sx={{
-                                    borderColor: 'rgba(255,255,255,0.3)',
-                                    color: 'white',
-                                    fontWeight: 600,
-                                    py: 1.5,
-                                    borderRadius: 2,
-                                    textTransform: 'none',
-                                    minWidth: 'auto',
-                                    px: 2,
-                                    '&:hover': {
-                                        borderColor: '#e20000',
-                                        backgroundColor: 'rgba(226, 0, 0, 0.1)'
-                                    },
-                                    transition: 'all 0.3s ease'
-                                }}
-                            >
-                                📖
-                            </Button>
+                            <Tooltip title='Read about him'>
+                                <Button
+                                    variant="outlined"
+                                    size="small"
+                                    component="a"
+                                    href={coach.article}
+                                    target="_blank"
+                                    sx={{
+                                        borderColor: 'rgba(255,255,255,0.3)',
+                                        color: 'white',
+                                        fontWeight: 600,
+                                        py: 1.5,
+                                        borderRadius: 2,
+                                        textTransform: 'none',
+                                        minWidth: 'auto',
+                                        px: 2,
+                                        '&:hover': {
+                                            borderColor: '#e20000',
+                                            backgroundColor: 'rgba(226, 0, 0, 0.1)'
+                                        },
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                >
+                                    📖
+                                </Button>
+                            </Tooltip>
                         </Box>
                     </CardContent>
                 </Card>

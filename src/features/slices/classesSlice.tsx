@@ -66,7 +66,7 @@ const initialState: {initialClasses: ClassesProps[]} = {
         coach: {
             coachName: 'Rener Gracie',
             coachUrl: '/coaches/Rener Gracie',
-            coachImg: '/images/coaches/rener-garcie.webp',
+            coachImg: '/images/coaches/rener_main.jpg',
         },
         price: 100,
         imgSrc: '/images/routines/bjj2.jpg',

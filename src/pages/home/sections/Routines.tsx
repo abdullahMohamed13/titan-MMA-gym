@@ -52,7 +52,6 @@ export default function Routines() {
             <Container sx={{ py: 4, width: '100%', position: 'relative', zIndex: 10 }}>
                 {/* Header Section */}
                 <Box sx={{ textAlign: 'center', mb: 8 }}>
-                    <h2 className='text-background'>HI</h2>
                     <HeaderComponent
                         headingText='unlock your fighting potential'
                         subHeadingText='Discover our elite training programs designed by UFC champions and world-class coaches.' />

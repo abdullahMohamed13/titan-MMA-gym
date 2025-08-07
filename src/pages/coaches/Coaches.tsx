@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Container, Typography, Box, Chip } from '@mui/material';
 import CoachesList from "./CoachesList";
 import HeaderComponent from '../../components/HeaderComponent';
+import Testimonials from './Testimonials';
 
 export default function Coaches() {
     document.title = 'Titan MMA - Coaches';
@@ -55,7 +56,8 @@ export default function Coaches() {
                             EXPERTISE AREAS
                         </Typography>
                         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center' }}>
-                            {['MMA', 'Boxing', 'Kickboxing', 'Muay Thai', 'Wrestling', 'Sambo', 'BJJ', 'Judo', 'Olympic Judo'].map((specialty, index) => (
+                            {['MMA', 'Boxing', 'Kickboxing', 'Muay Thai', 'Wrestling', 'Sambo', 'BJJ', 'Judo']
+                            .map((specialty, index) => (
                                 <Chip
                                     key={index}
                                     label={specialty}
@@ -90,6 +92,9 @@ export default function Coaches() {
                     }}
                 >
                     <CoachesList />
+                </Box>
+                <Box>
+                    <Testimonials />
                 </Box>
 
             </Container>

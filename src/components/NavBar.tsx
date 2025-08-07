@@ -1,7 +1,8 @@
+import { ReactNode } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 interface PagesProps {
-  label: string
+  label: string | ReactNode
   url: string
 }
 
@@ -36,10 +37,6 @@ export default function NavBar({pages}: NavBarProps) {
             </a>
             <a
               href="#"
-// #00b3b3
-// #00a6d6
-// #008080
-// #00ffff
               className="text-sm text-primary bg-[#e20000] hover:bg-[#e20000]/60 p-3 rounded-xl"
             >
               Log In
@@ -52,14 +49,13 @@ export default function NavBar({pages}: NavBarProps) {
       <nav className="bg-[#e20000]">
         <div className="max-w-screen-xl px-4 py-3 mx-auto">
           <div className="flex items-center">
-            <ul className="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
+            <ul className="flex flex-row items-center font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
               {pages.map((page, index) => (
                 <li key={index}>
-                  <a onClick={() => navigate(page.url)}
+                  <a onClick={() => page.url === '/products' ? window.open(page.url, '_blank') : navigate(page.url)}
                     className="text-white hover:underline cursor-pointer"
-                    target={page.label === 'products' ? '_blank' : '_self'}
                     aria-current="page">
-                    {page.label.toUpperCase()}
+                    {typeof(page.label) === 'string' ? page.label.toUpperCase() : page.label}
                   </a>
                 </li>
               ))}

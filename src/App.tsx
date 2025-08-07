@@ -6,25 +6,26 @@ import './styles/index.css'
 import Navbar from './components/NavBar'
 import PageSkeleton from './components/PageSkeleton'
 import ProductsLayout from './layouts/ProductsLayout'
+import Footer from './components/Footer'
 // Pages
 import Home from './pages/home/Home'
-import { ErrorMessage } from './pages/error-pages/ErrorMessage'
-import { NotFoundPage } from './pages/error-pages/NotFoundPage'
-import Footer from './components/Footer'
-import CoachProfile from './pages/coaches/dynamic/CoachProfile'
   // Lazily loaded
-const ProductsPage = lazy(() => import('./pages/products/ProductsPage'))
 const Classes = lazy(() => import('./pages/classes/Classes'))
 const Coaches = lazy(() => import('./pages/coaches/Coaches'))
-const Events = lazy(() => import('./pages/events/Events'))
+const CoachProfile = lazy(() => import('./pages/coaches/dynamic/CoachProfile'))
 const Students = lazy(() => import('./pages/students/Students'))
+const Events = lazy(() => import('./pages/events/Events'))
+const ProductsPage = lazy(() => import('./pages/products/ProductsPage'))
+const CategoryPage = lazy(() => import('./pages/products/CategoryPage'))
+const ErrorMessage = lazy(() => import('./pages/error-pages/ErrorMessage'))
+const NotFoundPage = lazy(() => import('./pages/error-pages/NotFoundPage'))
 
 const mainPages = [
   {label: 'home', url: '/'},
   {label: 'classes', url: '/classes'},
   {label: 'coaches', url: '/coaches'},
   {label: 'students', url: '/students'},
-  {label: 'products', url: '/products'},
+  {label: 'store', url: '/products'},
   {label: 'events', url: '/events'}
 ];
 
@@ -92,11 +93,11 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      {
-        path: '*',
-        element: <NotFoundPage />,
-      },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
   {
     path: '/products',
@@ -109,6 +110,12 @@ const router = createBrowserRouter([
             <ProductsPage />
         </Suspense>
         )
+    },
+    {
+      path: '/products/:cat',
+      element: <Suspense fallback={<PageSkeleton />}>
+          <CategoryPage />
+        </Suspense>
     }
     ],
   },
