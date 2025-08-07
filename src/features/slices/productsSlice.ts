@@ -20,7 +20,7 @@ const initialState: { initialProducts: ProductProps[] } = {
             title: 'Regular Gloves',
             description: 'MMA Gloves, does the minimum job',
             price: 20,
-            img: 'images/products/gloves.webp',
+            img: 'images/products/titan-gloves-red.webp',
             discount: 10,
             rating: 4.4,
             sizes: ['XS', 'S'],
