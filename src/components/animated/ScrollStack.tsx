@@ -42,7 +42,7 @@ interface ScrollStackProps {
 const ScrollStack: React.FC<ScrollStackProps> = ({
   children,
   className = "",
-  itemDistance = 150,
+  itemDistance = 200,
   itemScale = 0.03,
   itemStackDistance = 30,
   stackPosition = "20%",
@@ -229,22 +229,10 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       return;
     }
 
-    console.log('ScrollStack: Initializing with', {
-      itemDistance,
-      itemScale,
-      itemStackDistance,
-      stackPosition,
-      scaleEndPosition,
-      baseScale,
-      rotationAmount,
-      blurAmount
-    });
 
     const cards = Array.from(scroller.querySelectorAll(".scroll-stack-card")) as HTMLElement[];
     cardsRef.current = cards;
     const transformsCache = lastTransformsRef.current;
-
-    console.log('ScrollStack: Found', cards.length, 'cards');
 
     cards.forEach((card, i) => {
       if (i < cards.length - 1) {
@@ -260,11 +248,6 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     });
 
     const lenisInstance = setupLenis();
-    if (lenisInstance) {
-      console.log('ScrollStack: Lenis initialized successfully');
-    } else {
-      console.error('ScrollStack: Failed to initialize Lenis');
-    }
 
     updateCardTransforms();
 
@@ -317,10 +300,11 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       }}
     >
       {/*  px-20  pt-[20vh] */}
-      <div className="scroll-stack-inner pb-[20rem] min-h-screen">
+      <div className="scroll-stack-inner px-20 pt-[15vh] pb-[20rem] min-h-screen">
         {children}
         {/* Spacer so the last pin can release cleanly */}
-        <div className="scroll-stack-end w-full h-px" />
+        <div className="scroll-stack-end w-full h-px">
+        </div>
       </div>
     </div>
   );

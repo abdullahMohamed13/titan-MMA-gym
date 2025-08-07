@@ -75,22 +75,18 @@ export default function Stack({
           },
           {
             id: 4,
-            img: "/images/gallery/karate.webp",
-          },
-          {
-            id: 5,
             img: "/images/gallery/fighter-kid.webp",
           },
           {
-            id: 6,
+            id: 5,
             img: "/images/gallery/helmet-guy.webp",
           },
           {
-            id: 7,
+            id: 6,
             img: "/images/gallery/gym.webp",
           },
           {
-            id: 8,
+            id: 7,
             img: "/images/gallery/khamzat.webp",
           },
         ],

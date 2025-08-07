@@ -1,5 +1,8 @@
-import { Container } from "@mui/system";
+// custom components
 import { initialFighters } from "../../features/slices/fightersSlice";
+// MUI Components
+import { Container } from "@mui/system";
+// MUI Icons
 
 export default function Students() {
     document.title = 'Titan MMA - Students';

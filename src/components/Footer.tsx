@@ -1,5 +1,4 @@
 import Stack from "./animated/Stack";
-import { Divider } from "@mui/material";
 import { LocationOn, CallEndSharp, Email, LinkedIn, GitHub, Person } from "@mui/icons-material";
 
 const branches = [
@@ -10,8 +9,7 @@ const branches = [
 ]
 
 export default function Footer() {
-    return <footer className="py-10">
-        <Divider />
+    return <footer className="pt-5 pb-10">
         <div className='*:py-2 pl-7 pr-10'>
             <section className="flex items-center justify-between">
                 <ul className="list-none flex flex-col gap-2">

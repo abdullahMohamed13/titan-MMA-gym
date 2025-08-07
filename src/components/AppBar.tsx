@@ -1,5 +1,4 @@
 import { useNavigate, Link } from 'react-router-dom';
-import { ThemeToggle } from '../features/theme/ThemeToggle';
 
 const pages = [
   {label: 'home', url: '/'},
@@ -29,7 +28,6 @@ export default function Navbar() {
             </span>
           </Link>
           <div className="flex items-center space-x-6 rtl:space-x-reverse">
-            <ThemeToggle />
             <a
               href="#"
               className="text-sm text-primary"

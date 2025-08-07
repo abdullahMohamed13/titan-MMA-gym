@@ -1,5 +1,4 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const flowbiteReact = require("flowbite-react/plugin/webpack");
 
@@ -8,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    clean: true
+    clean: false // Don't clean on every build for speed
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -27,7 +26,8 @@ module.exports = {
             experimentalWatchApi: true,
             compilerOptions: {
               module: 'esnext',
-              target: 'es2017'
+              target: 'es2017',
+              skipLibCheck: true
             }
           }
         },
@@ -36,13 +36,6 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader', 'postcss-loader'],
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg|webp|avif|mp4)$/i,
-        type: 'asset/resource',
-        generator: {
-          filename: 'images/[name][ext]'
-        }
       }
     ]
   },
@@ -50,18 +43,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
-    flowbiteReact(),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'public',
-          to: '.',
-          globOptions: {
-            ignore: ['**/index.html']
-          }
-        }
-      ]
-    })
+    flowbiteReact()
   ],
   devServer: {
     static: [
@@ -72,27 +54,22 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
     compress: false,
-    open: true,
+    open: false, // Don't auto-open browser
     client: {
       overlay: false,
-      logging: 'warn'
+      logging: 'error' // Only show errors
     },
     watchFiles: {
       paths: ['src/**/*'],
       options: {
         usePolling: false,
-        interval: 1000,
-        aggregateTimeout: 300
+        interval: 500,
+        aggregateTimeout: 200
       }
-    },
-    headers: {
-      'Access-Control-Allow-Origin': '*'
     }
   },
   performance: {
-    hints: false,
-    maxEntrypointSize: 1024 * 1024,
-    maxAssetSize: 1024 * 1024
+    hints: false
   },
   optimization: {
     removeAvailableModules: false,
@@ -109,7 +86,10 @@ module.exports = {
   },
   stats: {
     errorDetails: false,
-    children: false
+    children: false,
+    modules: false,
+    chunks: false,
+    chunkModules: false
   },
   mode: 'development'
-};
+}; 

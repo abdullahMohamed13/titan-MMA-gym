@@ -40,8 +40,9 @@
   }
 }
 
+/* Start Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -49,14 +50,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 4px;
+  background-color: var(--color-primary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
+/* end Scrollbar */
 
 /* ScrollStack specific styles */
 .scroll-stack-container {
@@ -76,21 +76,8 @@
 }
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
   
-  /* Light mode (default) */
-  --color-bg: #f5f7fa;
-  --color-text: #2C3E50;
-  --color-card: #ffffff;
-  --color-border: #d1d5db;
-  --color-primary: #e20000;
-  --color-secondary: #9b59b6;
-  --color-reset: #ff6b6b;
-  --color-reset-hover: #ff8c8c;
-}
-
-/* Dark mode variables */
-.dark {
   --color-bg: #213547;
   --color-text: #ffffff;
   --color-card: #2d4961;

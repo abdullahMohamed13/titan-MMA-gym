@@ -1,84 +1,278 @@
-import ScrollStack, { ScrollStackItem } from '../../../components/animated/ScrollStack'
-import { Box, Container, Grid, Stack, useMediaQuery } from "@mui/system";
 import { Link } from 'react-router-dom';
-import { Chip, Typography } from '@mui/material';
-import { useTheme } from "@mui/material/styles";
+import { useEffect, useState } from 'react';
+// custom components
+import HeaderComponent from '../../../components/HeaderComponent';
 import { initialClasses } from '../../../features/slices/classesSlice';
+// React bits
+import ScrollStack, { ScrollStackItem } from '../../../components/animated/ScrollStack'
+// MUI Components
+import { useTheme } from "@mui/material/styles";
+import { Box, Container, useMediaQuery } from "@mui/system";
+import { Chip, Typography, Paper, Avatar } from '@mui/material';
+// MUI Icons
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import SportsMmaIcon from '@mui/icons-material/SportsMma';
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 export default function Routines() {
     const theme = useTheme();
     const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
-    return <Box
-              component="section"
-              sx={{
-                // bgcolor: "background.paper",
-                py: { xs: 6, md: 8 },
-              }}
-            >
-                <Container sx={{ py: 4, width: '100%' }}>
-                    <Typography
-                    variant={isSmUp ? "h3" : "h4"}
-                    component="h2"
-                    gutterBottom
-                    fontWeight={700}
-                    sx={{ mb: 4 }}
-                    >
-                    Our Routines
-                    </Typography>
-                    <div className="scroll-stack-container" style={{ height: '80vh', marginTop: '0.5rem' }}> {/* 80vh */}
-                        <ScrollStack className='text-white'>
-                            {initialClasses.map((routine, index) => {
-                                return <ScrollStackItem key={index}
-                                className="flex justify-between gap-4" style={{ backgroundColor: routine.cardBgColor }}>
-                                        <div>
-                                            <h2>{routine.name}</h2>
-                                            <p>{routine.description}</p>
-                                            <a href={routine.coachUrl}>Coach: {routine.coach}</a>
-                                            <div className='mr-1'>Target Audience:
-                                                {routine.targetAudience.map((ta, index) => {
-                                                    return <Chip label={ta} key={index}
-                                                    className='m-1' sx={{color: 'white'}} variant="filled" />
-                                                })}
-                                            </div>
-                                            <div className='flex gap-4 items-center'>
-                                                <p className='text-xl'>{routine.price}$</p>
-                                                <Link to={routine.classUrl}>
-                                                    <button
-                                                    className="w-full sm:w-auto rounded-lg px-6 py-3 bg-primary hover:bg-white
-                                                    hover:text-black font-semibold shadow-lg transition">
-                                                    Book A Class
-                                                    </button>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                        <img
-                                          loading="lazy"
-                                          src={routine.imgSrc} className='rounded-lg border-2 border-primary'
-                                          width={200} height={170} alt={`${routine.name} Routine`} />
-                                    </ScrollStackItem>
-                            })}
-                        </ScrollStack>
-                    </div>
-                </Container>
-            </Box>
-}
+    const [isLoaded, setIsLoaded] = useState(false);
 
-{/*
-            <Grid container spacing={2}>
-            <Grid size={4}>
-                <Stack spacing={2}>
-                    <Item sx={{padding: '5px 10px'}}>Column 1 - Row 1</Item>
-                    <Item sx={{padding: '5px 10px'}}>Column 1 - Row 2</Item>
-                </Stack>
-            </Grid>
-            <Grid size={3}>
-                <Item sx={{padding: '5px 10px'}}>Column 1 - Row 3</Item>
-            </Grid>
-            <Grid size={5}>
-                <Item sx={{padding: '5px 10px'}}>Column 1 - Row 3</Item>
-            </Grid>
-            <Grid size={8}>
-                <Item sx={{ height: '100%', padding: '5px 10px' }}>Column 2</Item>
-            </Grid>
-        </Grid>
-     */} 
+    useEffect(() => {
+        setIsLoaded(true)
+    }, [])
+    
+    const getRoutineIcon = (routineName: string) => {
+        const name = routineName.toLowerCase();
+        if (name.includes('mma') || name.includes('fighting')) return <SportsMmaIcon sx={{ fontSize: 40, color: '#e20000' }} />;
+        if (name.includes('conditioning') || name.includes('strength')) return <LocalFireDepartmentIcon sx={{ fontSize: 40, color: '#ff6b35' }} />;
+        if (name.includes('fitness') || name.includes('training')) return <FitnessCenterIcon sx={{ fontSize: 40, color: '#2ecc71' }} />;
+        return <EmojiEventsIcon sx={{ fontSize: 40, color: '#f1c40f' }} />;
+    };
+
+    return (
+        <Box
+            component="section"
+            sx={{
+                py: { xs: 4, md: 6 },
+                background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%)',
+                position: 'relative',
+                overflow: 'hidden'
+            }}
+        >
+            {/* Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div className={`absolute top-20 left-10 w-64 h-64 bg-red-500/5 rounded-full blur-3xl transition-all duration-2000 ${isLoaded ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}></div>
+                <div className={`absolute bottom-20 right-10 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl transition-all duration-2000 delay-500 ${isLoaded ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}></div>
+                <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-yellow-500/5 rounded-full blur-3xl transition-all duration-2000 delay-1000 ${isLoaded ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}></div>
+            </div>
+
+            <Container sx={{ py: 4, width: '100%', position: 'relative', zIndex: 10 }}>
+                {/* Header Section */}
+                <Box sx={{ textAlign: 'center', mb: 8 }}>
+                    <h2 className='text-background'>HI</h2>
+                    <HeaderComponent
+                        headingText='unlock your fighting potential'
+                        subHeadingText='Discover our elite training programs designed by UFC champions and world-class coaches.' />
+
+                    {/* Stats Row */}
+                    <Box 
+                        sx={{ 
+                            display: 'grid', 
+                            gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },
+                            gap: 3,
+                            mb: 8,
+                            transition: 'all 0.8s ease 0.4s',
+                            transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
+                            opacity: isLoaded ? 1 : 0
+                        }}
+                    >
+                        {[
+                            { icon: '🥊', label: 'MMA Classes', value: '15+' },
+                            { icon: '🏆', label: 'UFC Champions', value: '5' },
+                            { icon: '⚡', label: 'Skill Levels', value: 'All' },
+                            { icon: '🔥', label: 'Active Students', value: '500+' }
+                        ].map((stat, index) => (
+                            <Paper
+                                key={index}
+                                elevation={8}
+                                sx={{
+                                    p: 3,
+                                    textAlign: 'center',
+                                    background: 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
+                                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                                    backdropFilter: 'blur(10px)',
+                                    borderRadius: 3,
+                                    transition: 'all 0.3s ease',
+                                    '&:hover': {
+                                        transform: 'translateY(-5px)',
+                                        boxShadow: '0 15px 35px rgba(0,0,0,0.3)',
+                                        border: '1px solid rgba(226, 0, 0, 0.3)'
+                                    }
+                                }}
+                            >
+                                <div className="text-3xl mb-2">{stat.icon}</div>
+                                <Typography variant="h4" sx={{ color: 'white', fontWeight: 700, mb: 1 }}>
+                                    {stat.value}
+                                </Typography>
+                                <Typography variant="body2" sx={{ color: '#b0b0b0' }}>
+                                    {stat.label}
+                                </Typography>
+                            </Paper>
+                        ))}
+                    </Box>
+                </Box>
+
+                {/* Routines Section */}
+                <Box 
+                    className="scroll-stack-container" 
+                    sx={{ 
+                        height: '80vh', 
+                        mt: 2,
+                        transition: 'all 0.8s ease 0.6s',
+                        transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
+                        opacity: isLoaded ? 1 : 0
+                    }}
+                >
+                    <ScrollStack className='text-white'>
+                        {initialClasses.slice(0, 4).map((routine, index) => (
+                            <ScrollStackItem 
+                                key={index}
+                                className="flex justify-between gap-6 p-8" 
+                                style={{ 
+                                    backgroundColor: routine.cardBgColor,
+                                    borderRadius: 16,
+                                    border: '2px solid rgba(255, 255, 255, 0.1)',
+                                    backdropFilter: 'blur(10px)',
+                                    transition: 'all 0.3s ease',
+                                    boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
+                                }}
+                            >
+                                <Box sx={{ flex: 1 }}>
+                                    {/* Header with Icon */}
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
+                                        {getRoutineIcon(routine.name)}
+                                        <Typography 
+                                            variant="h4" 
+                                            sx={{ 
+                                                fontWeight: 800,
+                                                color: 'white',
+                                                textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+                                            }}
+                                        >
+                                            {routine.name}
+                                        </Typography>
+                                    </Box>
+
+                                    {/* Description */}
+                                    <Typography 
+                                        variant="body1" 
+                                        sx={{ 
+                                            color: '#e0e0e0',
+                                            mb: 4,
+                                            lineHeight: 1.7,
+                                            fontSize: '1.1rem'
+                                        }}
+                                    >
+                                        {routine.description}
+                                    </Typography>
+
+                                    {/* Coach Info */}
+                                    <Box sx={{ mb: 4 }}>
+                                        <Typography 
+                                            component={Link}
+                                            to={routine.coach.coachUrl}
+                                            sx={{
+                                                color: '#ff6b35',
+                                                textDecoration: 'none',
+                                                fontWeight: 600,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '10px',
+                                                fontSize: '1.1rem',
+                                                '&:hover': {
+                                                    color: '#ff8c42',
+                                                    textDecoration: 'underline'
+                                                }
+                                            }}
+                                        >
+                                            <Avatar sx={{ width: 32, height: 32, fontSize: '0.75rem' }}>
+                                                <img
+                                                src={routine.coach.coachImg}
+                                                alt={`${routine.coach.coachName} Photo`}
+                                                loading="lazy"
+                                                className='hover:scale-[1.1]'
+                                                style={{
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    objectFit: 'cover',
+                                                    transition: 'transform 0.3s ease'
+                                                }}
+                                            />
+                                            </Avatar>
+                                            Coach: {routine.coach.coachName}
+                                        </Typography>
+                                    </Box>
+
+                                    {/* Target Audience */}
+                                    <Box sx={{ mb: 4 }}>
+                                        <Typography 
+                                            variant="h6" 
+                                            sx={{ 
+                                                color: 'white', 
+                                                mb: 2,
+                                                fontWeight: 600
+                                            }}
+                                        >
+                                            🎯 Perfect For:
+                                        </Typography>
+                                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                                            {routine.targetAudience.map((ta, index) => (
+                                                <Chip 
+                                                    key={index}
+                                                    label={ta} 
+                                                    sx={{
+                                                        color: 'white',
+                                                        backgroundColor: 'rgba(226, 0, 0, 0.3)',
+                                                        border: '1px solid rgba(226, 0, 0, 0.5)',
+                                                        fontWeight: 600,
+                                                        '&:hover': {
+                                                            backgroundColor: 'rgba(226, 0, 0, 0.5)'
+                                                        }
+                                                    }} 
+                                                    variant="filled" 
+                                                />
+                                            ))}
+                                        </Box>
+                                    </Box>
+
+                                    
+                                </Box>
+
+                                {/* Image */}
+                                <Box sx={{ flexShrink: 0 }}>
+                                    <img
+                                        loading="lazy"
+                                        src={routine.imgSrc} 
+                                        className='rounded-2xl border-4 border-red-500/50 shadow-2xl'
+                                        style={{
+                                            width: 250,
+                                            height: 200,
+                                            objectFit: 'cover',
+                                            transition: 'all 0.3s ease'
+                                        }}
+                                        alt={`${routine.name} Routine`} 
+                                    />
+                                </Box>
+                            </ScrollStackItem>
+                        ))}
+                    </ScrollStack>
+                </Box>
+
+                {/* Bottom CTA */}
+                <Box 
+                    sx={{ 
+                        textAlign: 'center', 
+                        mt: 8,
+                        transition: 'all 0.8s ease 0.8s',
+                        transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
+                        opacity: isLoaded ? 1 : 0
+                    }}
+                >
+                    <Typography 
+                        variant="h5" 
+                        sx={{ 
+                            color: 'white',
+                            mb: 3,
+                            fontWeight: 700
+                        }}
+                    >
+                        READY TO START YOUR JOURNEY?
+                    </Typography>
+                </Box>
+            </Container>
+        </Box>
+    );
+}
