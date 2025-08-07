@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 
 type HeaderProps = {
     headingText: string,
-    subHeadingText?: string
+    headingClassName?: string,
+    subHeadingText?: string,
+    subHeadingClassName?: string,
 }
 
-export default function HeaderComponent({headingText, subHeadingText}: HeaderProps) {
+export default function HeaderComponent({headingText, subHeadingText, headingClassName, subHeadingClassName}: HeaderProps) {
     const theme = useTheme();
     const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));   
     const [isLoaded, setIsLoaded] = useState(false);
@@ -21,6 +23,7 @@ export default function HeaderComponent({headingText, subHeadingText}: HeaderPro
                 variant={isSmUp ? "h2" : "h3"}
                 component="h2"
                 fontWeight={900}
+                className={headingClassName}
                 sx={{
                     background: 'linear-gradient(45deg, #e20000, #ff6b35, #f1c40f)',
                     backgroundClip: 'text',
@@ -37,6 +40,7 @@ export default function HeaderComponent({headingText, subHeadingText}: HeaderPro
         {/* Sub Heading */}
             <Typography
                 variant="h6"
+                className="subHeadingClassName"
                 sx={{
                     color: '#b0b0b0',
                     mb: 6,
