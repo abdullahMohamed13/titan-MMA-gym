@@ -7,7 +7,7 @@ import { initialClasses } from '../../../features/slices/classesSlice';
 import ScrollStack, { ScrollStackItem } from '../../../components/animated/ScrollStack'
 // MUI Components
 import { useTheme } from "@mui/material/styles";
-import { Box, Container, useMediaQuery } from "@mui/system";
+import { Box, Container } from "@mui/system";
 import { Chip, Typography, Paper, Avatar } from '@mui/material';
 // MUI Icons
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
@@ -17,7 +17,6 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 export default function Routines() {
     const theme = useTheme();
-    const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -147,11 +146,11 @@ export default function Routines() {
 
                                     {/* Description */}
                                     <Typography 
-                                        variant="body1" 
+                                        variant="body1"
+                                        color='textPrimary'
                                         sx={{ 
-                                            color: '#e0e0e0',
                                             mb: 4,
-                                            lineHeight: 1.7,
+                                            lineHeight: 1.5,
                                             fontSize: '1.1rem'
                                         }}
                                     >
@@ -159,12 +158,12 @@ export default function Routines() {
                                     </Typography>
 
                                     {/* Coach Info */}
-                                    <Box sx={{ mb: 4 }}>
+                                    <Box sx={{ mb: 3 }}>
                                         <Typography 
                                             component={Link}
                                             to={routine.coach.coachUrl}
                                             sx={{
-                                                color: '#ff6b35',
+                                                color: '#ffc635',
                                                 textDecoration: 'none',
                                                 fontWeight: 600,
                                                 display: 'flex',
