@@ -28,7 +28,7 @@ const initialState: {initialClasses: ClassesProps[]} = {
         price: 50,
         imgSrc: '/images/routines/fundamentals.webp',
         cardBgColor: '#e20000',
-        level: 'A',
+        level: 'Beginner',
         targetAudience: ['Beginners', 'hobbyists', 'anyone new to MMA']
     },
     {
@@ -42,7 +42,7 @@ const initialState: {initialClasses: ClassesProps[]} = {
         price: 130,
         imgSrc: 'images/routines/striking-routine.webp',
         cardBgColor: '#111',
-        level: 'A',
+        level: 'Beginner',
         targetAudience: ['self-defense learners', 'cardio lovers']
     },
     {
@@ -54,9 +54,9 @@ const initialState: {initialClasses: ClassesProps[]} = {
             coachImg: '/images/coaches/khabib.webp'
         },
         price: 200,
-        imgSrc: '/images/brand-logo.webp',
+        imgSrc: '/images/routines/wrestling.jpg',
         cardBgColor: '#e20000',
-        level: 'C',
+        level: 'Advanced',
         targetAudience: ['Fighters wanting strong takedowns and control',
             'BJJ practitioners wanting better top game']
     },
@@ -71,7 +71,7 @@ const initialState: {initialClasses: ClassesProps[]} = {
         price: 100,
         imgSrc: '/images/routines/bjj2.jpg',
         cardBgColor: '#111',
-        level: 'C',
+        level: 'Advanced',
         targetAudience: ['Ground game enthusiasts', 'people interested in belt ranking']
     },
     {
@@ -85,7 +85,7 @@ const initialState: {initialClasses: ClassesProps[]} = {
         price: 80,
         imgSrc: '/images/routines/muay-thai.webp',
         cardBgColor: '#e20000',
-        level: 'B',
+        level: 'Intermediate',
         targetAudience: ['Fitness-focused members', 'fighters', "women's self-defense seekers"]
     },
     ]

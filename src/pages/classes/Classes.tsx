@@ -30,19 +30,10 @@ export default function Classes() {
 
     const getLevelColor = (level: string) => {
         switch (level) {
-            case 'A': return '#e74c3c'; // Red
-            case 'B': return '#f39c12'; // Orange
-            case 'C': return '#27ae60'; // Green
-            default: return '#95a5a6'; // blue-green
-        }
-    };
-
-    const getLevelText = (level: string) => {
-        switch (level) {
-            case 'A': return 'Beginner';
-            case 'B': return 'Intermediate';
-            case 'C': return 'Advanced';
-            default: return 'All Levels';
+            case 'Beginner': return '#27ae60';
+            case 'Intermediate': return '#f39c12';
+            case 'Advanced': return '#e74c3c';
+            default: return '#95a5a6';
         }
     };
 
@@ -182,7 +173,7 @@ export default function Classes() {
                                             boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
                                         }}
                                     >
-                                        {getLevelText(c.level)}
+                                        {c.level}
                                     </Box>
                                     {/* Price Badge */}
                                     <Box
@@ -372,28 +363,6 @@ export default function Classes() {
                     >
                         READY TO START YOUR TRAINING?
                     </Typography>
-                    <Button
-                        variant="contained"
-                        size="large"
-                        sx={{
-                            px: 6,
-                            py: 3,
-                            fontSize: '1.2rem',
-                            fontWeight: 700,
-                            background: 'linear-gradient(45deg, #e20000, #ff6b35)',
-                            borderRadius: 3,
-                            textTransform: 'none',
-                            boxShadow: '0 12px 35px rgba(226, 0, 0, 0.4)',
-                            '&:hover': {
-                                background: 'linear-gradient(45deg, #c10000, #e55a2b)',
-                                transform: 'scale(1.05)',
-                                boxShadow: '0 16px 45px rgba(226, 0, 0, 0.5)'
-                            },
-                            transition: 'all 0.3s ease'
-                        }}
-                    >
-                        🚀 Start Your Journey Today
-                    </Button>
                 </Box>
             </Container>
         </Box>
