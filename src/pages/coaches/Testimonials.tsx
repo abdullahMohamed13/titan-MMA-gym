@@ -14,7 +14,7 @@ const testimonials = [
     },
     { 
         name: 'islam Mmakhachev',
-        text: 'I love that they opened a branch in Dagestan. If you want your son good wrestling send him 2-3 years titan gym and forget brohta',
+        text: 'I love that they opened a branch in Dagestan. If you want your son good wrestling send him 2-3 years titan gym and forget bratha',
         UFCTitle: 'Former Lightweight Champ',
         img: 'https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/3332412.png&w=350&h=254',
         flag: 'https://a.espncdn.com/combiner/i?img=/i/teamlogos/countries/500/rus.png&h=40&w=40',
@@ -82,7 +82,10 @@ export default function Testimonials() {
       <Box
         sx={{
             display: 'inline-flex',
-            animation: 'scroll 130s linear infinite',
+            animation: {
+                xs: 'scroll 190s linear infinite',
+                sm: 'scroll 130s linear infinite'
+            },
             '@keyframes scroll': {
                 '0%': { transform: 'translateX(0)' },
                 '100%': { transform: 'translateX(-100%)' },
@@ -96,23 +99,25 @@ export default function Testimonials() {
           <Card
             key={index}
             sx={{
-              width: {
-                xs: 250,
-                sm: 300
-              },
-              maxWidth: 350,
-              textWrap: 'wrap',
-              mx: 2,
-              flexShrink: 0,
-              backgroundColor: 'var(--background)',
-              borderRadius: 2,
-              boxShadow: 3,
-              ":first-of-type": {
-                marginLeft: {
-                    xs: '300px',
-                    sm: '450px'
+                display: 'flex',
+                flexDirection: 'column',
+                width: {
+                    xs: 250,
+                    sm: 300
+                },
+                maxWidth: 350,
+                textWrap: 'wrap',
+                mx: 2,
+                flexShrink: 0,
+                backgroundColor: 'var(--background)',
+                borderRadius: 2,
+                boxShadow: 3,
+                ":first-of-type": {
+                    marginLeft: {
+                        xs: '300px',
+                        sm: '450px'
                 }
-              }
+                }
             }}
           >
             <CardHeader
@@ -126,7 +131,13 @@ export default function Testimonials() {
                         {testimonial.UFCTitle}
                     </Typography>}
             />
-            <CardContent>
+            <CardContent
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flex: 1 
+                }}
+            >
                 <Typography variant="body1" gutterBottom>
                     "{testimonial.text}"
                 </Typography>
@@ -134,8 +145,12 @@ export default function Testimonials() {
                     <Box
                         sx={{
                             background: 'linear-gradient(45deg, #e20000, #ff6b35)',
-                            color: 'white',
-                            fontSize: '14px',
+                            justifySelf: 'self-end',
+                            marginTop: 'auto',
+                            fontSize: {
+                                xs: '12px',
+                                md: '14px',
+                            },
                             textAlign: 'center',
                             fontWeight: 700,
                             py: 1.2,

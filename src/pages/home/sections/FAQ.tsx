@@ -72,30 +72,31 @@ export default function FAQ() {
                 border: 1,
                 borderColor: "divider",
                 borderRadius: 1,
-              }}
+                background: 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
+                backdropFilter: 'blur(10px)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                    transform: 'translateY(-5px)',
+                    boxShadow: '0 15px 35px rgba(0,0,0,0.3)',
+                    border: '1px solid rgba(226, 0, 0, 0.3)'
+                }}}
             >
               <AccordionSummary
                 id={`panel-header-${index}`}
-                expandIcon={<ExpandMoreIcon color="info" />}
+                expandIcon={<ExpandMoreIcon color="warning" />}
                 aria-controls={`panel-content-${index}`}
-                sx={{
-                  background: 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
-                  backdropFilter: 'blur(10px)',
-                  borderRadius: 3,
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                      transform: 'translateY(-5px)',
-                      boxShadow: '0 15px 35px rgba(0,0,0,0.3)',
-                      border: '1px solid rgba(226, 0, 0, 0.3)'
-                  }}}
               >
                 <Typography fontWeight={600}>{faq.question}</Typography>
               </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  <InfoOutline />
-                  {faq.answer}
-                </Typography>
+              <AccordionDetails
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '5px'
+                }}
+              >
+                <InfoOutline sx={{alignSelf: 'self-start'}} />
+                {faq.answer}
               </AccordionDetails>
             </Accordion>
           ))}
