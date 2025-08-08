@@ -95,9 +95,10 @@ module.exports = {
     maxAssetSize: 1024 * 1024
   },
   optimization: {
+    splitChunks: { chunks: 'all' },
     removeAvailableModules: false,
     removeEmptyChunks: false,
-    splitChunks: false,
+    // splitChunks: false,
     minimize: false,
     concatenateModules: false
   },
@@ -111,5 +112,6 @@ module.exports = {
     errorDetails: false,
     children: false
   },
-  mode: 'development'
+  // mode: 'development'
+  mode: 'production'
 };
