@@ -3,7 +3,6 @@ const webpack = require('webpack');
 require('dotenv').config({ path: '.env.local' });
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const flowbiteReact = require("flowbite-react/plugin/webpack");
 
 module.exports = {
   entry: './src/index.tsx',
@@ -61,7 +60,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
-    flowbiteReact(),
     new CopyWebpackPlugin({
       patterns: [
         {
