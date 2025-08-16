@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const flowbiteReact = require("flowbite-react/plugin/webpack");
+const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -43,7 +45,17 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
-    flowbiteReact()
+    flowbiteReact(),
+    new Dotenv({
+      path: './.env',
+      systemvars: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        VITE_CLERK_PUBLISHABLE_KEY: JSON.stringify(process.env.VITE_CLERK_PUBLISHABLE_KEY),
+        VITE_CONVEX_URL: JSON.stringify(process.env.VITE_CONVEX_URL)
+      }
+    })
   ],
   devServer: {
     static: [

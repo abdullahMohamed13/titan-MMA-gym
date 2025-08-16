@@ -13,7 +13,7 @@ const ProfileCard: React.FC<CoachesProps> = ({ name, img, specials }) => {
       <div className="p-6 flex flex-col items-center text-center relative">
         {/* Profile image with glow */}
         <div className="relative mb-4">
-          <div className="absolute inset-0 rounded-full blur-3xl opacity-30 bg-gradient-to-tr from-[#e20000] to-[#ff6b6b]" />
+          <div className="absolute inset-0 rounded-full blur-3xl opacity-30 bg-gradient-to-tr from-[var(--color-primary)] to-[#ff6b6b]" />
           <img
             loading="lazy"
             className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-[#1f324f] object-cover shadow-lg"
@@ -28,14 +28,14 @@ const ProfileCard: React.FC<CoachesProps> = ({ name, img, specials }) => {
           {specials.map((s, i) => (
             <span
               key={i}
-              className="text-[10px] sm:text-xs font-medium px-3 py-1 rounded-full bg-[#1b2f5a] text-[#f0e9f9] ring-1 ring-[#e20000]/60"
+              className="text-[10px] sm:text-xs font-medium px-3 py-1 rounded-full bg-[#1b2f5a] text-[#f0e9f9] ring-1 ring-[var(--color-primary)]/60"
             >
               {s}
             </span>
           ))}
         </div>
 
-                 <Link to={`/coaches/${encodeURIComponent(name)}`} className="mt-2 w-full max-w-[220px] rounded-full px-6 py-3 bg-gradient-to-r from-[#e20000] to-[#c41f1f] text-white font-semibold shadow-lg hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e20000]/70 transition inline-block text-center">
+        <Link to={`/coaches/${encodeURIComponent(name)}`} className="mt-2 w-full max-w-[220px] rounded-full px-6 py-3 bg-gradient-to-r from-[var(--color-primary)] to-[#c41f1f] text-white font-semibold shadow-lg hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/70 transition inline-block text-center">
           Learn More
         </Link>
       </div>

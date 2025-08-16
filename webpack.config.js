@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+require('dotenv').config({ path: '.env.local' });
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const flowbiteReact = require("flowbite-react/plugin/webpack");
@@ -47,6 +49,15 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      process: 'process/browser'
+    }),
+  new webpack.DefinePlugin({
+    'process.env.VITE_CLERK_PUBLISHABLE_KEY': JSON.stringify(process.env.VITE_CLERK_PUBLISHABLE_KEY),
+    'process.env.VITE_CONVEX_URL': JSON.stringify(process.env.VITE_CONVEX_URL),
+    // You can also define the process.env object if you need other env vars
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
+  }),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
@@ -111,6 +122,5 @@ module.exports = {
     errorDetails: false,
     children: false
   },
-  // mode: 'development'
   mode: 'production'
 };

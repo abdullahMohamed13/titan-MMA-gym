@@ -140,10 +140,10 @@ const Folder: React.FC<FolderProps> = ({
                 key={i}
                 onMouseMove={(e) => handlePaperMouseMove(e, i)}
                 onMouseLeave={(e) => handlePaperMouseLeave(e, i)}
-                className={`absolute bottom-[10%] left-1/2 z-20 transition-all duration-300 ease-in-out ${
+                className={`absolute bottom-[10%] left-1/2 z-20 transition-all duration-300 ease-in-out object-cover ${
                   !open
                     ? "-translate-x-1/2 translate-y-[10%] transform group-hover:translate-y-0"
-                    : "hover:scale-110"
+                    : "hover:scale-190"
                 } ${sizeClasses}`}
                 style={{
                   ...(!open ? {} : { transform: transformStyle }),

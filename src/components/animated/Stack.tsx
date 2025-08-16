@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useState } from "react";
 
 interface CardRotateProps {
   children: React.ReactNode;
@@ -57,40 +57,22 @@ export default function Stack({
   animationConfig = { stiffness: 260, damping: 20 },
   sendToBackOnClick = false,
 }: StackProps) {
-  const [cards, setCards] = useState(
-    cardsData.length
-      ? cardsData
-      : [
-          {
-            id: 1,
-            img: "/images/gallery/gym2.webp",
-          },
-          {
-            id: 2,
-            img: "/images/gallery/islam-javier-mendez.webp",
-          },
-          {
-            id: 3,
-            img: "/images/gallery/guard.webp",
-          },
-          {
-            id: 4,
-            img: "/images/gallery/fighter-kid.webp",
-          },
-          {
-            id: 5,
-            img: "/images/gallery/helmet-guy.webp",
-          },
-          {
-            id: 6,
-            img: "/images/gallery/gym.webp",
-          },
-          {
-            id: 7,
-            img: "/images/gallery/khamzat.webp",
-          },
-        ],
-  );
+  const [cards, setCards] = useState(cardsData.length ? cardsData : []);
+  const [dimensions, setDimensions] = useState(cardDimensions);
+
+  // Adjust card size for small screens
+  useEffect(() => {
+    const updateSize = () => {
+      if (window.innerWidth < 640) {
+        setDimensions({ width: 160, height: 160 }); // smaller on mobile
+      } else {
+        setDimensions(cardDimensions);
+      }
+    };
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, [cardDimensions]);
 
   const sendToBack = (id: number) => {
     setCards((prev) => {
@@ -103,52 +85,53 @@ export default function Stack({
   };
 
   return (
-    <div
-      className="relative"
-      style={{
-        width: cardDimensions.width,
-        height: cardDimensions.height,
-        perspective: 600,
-      }}
-    >
-      {cards.map((card, index) => {
-        const randomRotate = randomRotation ? Math.random() * 10 - 5 : 0;
-
-        return (
-          <CardRotate
-            key={card.id}
-            onSendToBack={() => sendToBack(card.id)}
-            sensitivity={sensitivity}
-          >
-            <motion.div
-              className="overflow-hidden rounded-2xl border-4 border-white"
-              onClick={() => sendToBackOnClick && sendToBack(card.id)}
-              animate={{
-                rotateZ: (cards.length - index - 1) * 4 + randomRotate,
-                scale: 1 + index * 0.06 - cards.length * 0.06,
-                transformOrigin: "90% 90%",
-              }}
-              initial={false}
-              transition={{
-                type: "spring",
-                stiffness: animationConfig.stiffness,
-                damping: animationConfig.damping,
-              }}
-              style={{
-                width: cardDimensions.width,
-                height: cardDimensions.height,
-              }}
+    <div className="flex justify-center items-center w-full">
+      <div
+        className="relative"
+        style={{
+          width: dimensions.width,
+          height: dimensions.height,
+          perspective: 600,
+        }}
+      >
+        {cards.map((card, index) => {
+          const randomRotate = randomRotation ? Math.random() * 10 - 5 : 0;
+          return (
+            <CardRotate
+              key={card.id}
+              onSendToBack={() => sendToBack(card.id)}
+              sensitivity={sensitivity}
             >
-              <img
-                loading="lazy"
-                src={card.img}
-                alt={`card-${card.id}`}
-                className="pointer-events-none h-full w-full object-cover"
-              />
-            </motion.div>
-          </CardRotate>
-        );
-      })}
+              <motion.div
+                className="overflow-hidden rounded-2xl border-4 border-[#e200004d]"
+                onClick={() => sendToBackOnClick && sendToBack(card.id)}
+                animate={{
+                  rotateZ: (cards.length - index - 1) * 4 + randomRotate,
+                  scale: 1 + index * 0.06 - cards.length * 0.06,
+                  transformOrigin: "90% 90%",
+                }}
+                initial={false}
+                transition={{
+                  type: "spring",
+                  stiffness: animationConfig.stiffness,
+                  damping: animationConfig.damping,
+                }}
+                style={{
+                  width: dimensions.width,
+                  height: dimensions.height,
+                }}
+              >
+                <img
+                  loading="lazy"
+                  src={card.img}
+                  alt={`card-${card.id}`}
+                  className="pointer-events-none h-full w-full object-cover"
+                />
+              </motion.div>
+            </CardRotate>
+          );
+        })}
+      </div>
     </div>
   );
 }

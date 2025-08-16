@@ -6,7 +6,6 @@ import { initialClasses } from '../../../features/slices/classesSlice';
 // React bits
 import ScrollStack, { ScrollStackItem } from '../../../components/animated/ScrollStack'
 // MUI Components
-import { useTheme } from "@mui/material/styles";
 import { Box, Container } from "@mui/system";
 import { Chip, Typography, Paper, Avatar } from '@mui/material';
 // MUI Icons
@@ -16,7 +15,6 @@ import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 export default function Routines() {
-    const theme = useTheme();
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -61,15 +59,14 @@ export default function Routines() {
                             display: 'grid', 
                             gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },
                             gap: 3,
-                            mb: 8,
                             transition: 'all 0.8s ease 0.4s',
                             transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
                             opacity: isLoaded ? 1 : 0
                         }}
                     >
                         {[
-                            { icon: '🥊', label: 'MMA Classes', value: '15+' },
-                            { icon: '🏆', label: 'UFC Champions', value: '5' },
+                            { icon: <SportsMmaIcon sx={{fontSize: '32px'}} color='primary' /> , label: 'MMA Classes', value: '5' },
+                            { icon: '🏆', label: 'UFC Champions', value: '10' },
                             { icon: '⚡', label: 'Skill Levels', value: 'All' },
                             { icon: '🔥', label: 'Active Students', value: '500+' }
                         ].map((stat, index) => (
@@ -108,7 +105,6 @@ export default function Routines() {
                     className="scroll-stack-container" 
                     sx={{ 
                         height: '80vh', 
-                        mt: 2,
                         transition: 'all 0.8s ease 0.6s',
                         transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
                         opacity: isLoaded ? 1 : 0
@@ -253,7 +249,7 @@ export default function Routines() {
                 <Box 
                     sx={{ 
                         textAlign: 'center', 
-                        mt: 8,
+                        mt: 3,
                         transition: 'all 0.8s ease 0.8s',
                         transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
                         opacity: isLoaded ? 1 : 0
@@ -263,7 +259,6 @@ export default function Routines() {
                         variant="h5" 
                         sx={{ 
                             color: 'white',
-                            mb: 3,
                             fontWeight: 700
                         }}
                     >

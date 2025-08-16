@@ -9,60 +9,60 @@ const testimonials = [
         text: 'High quality training and support. I had the honour to train under coach Khabib',
         UFCTitle: 'UFC Double Champ',
         ownedClass: 'Striking',
-        img: 'https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/4350812.png&w=350&h=254',
-        flag: 'https://a.espncdn.com/combiner/i?img=/i/teamlogos/countries/500/geo.png&h=40&w=40',
+        img: '/images/fighters/ilia.webp',
+        flag: '/images/fighters/flags/georgia.webp',
     },
     { 
         name: 'islam Mmakhachev',
         text: 'I love that they opened a branch in Dagestan. If you want your son good wrestling send him 2-3 years titan gym and forget bratha',
         UFCTitle: 'Former Lightweight Champ',
-        img: 'https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/3332412.png&w=350&h=254',
-        flag: 'https://a.espncdn.com/combiner/i?img=/i/teamlogos/countries/500/rus.png&h=40&w=40',
+        img: '/images/fighters/islam.webp',
+        flag: '/images/fighters/flags/russia.webp',
     },
     {
         name: 'Dricus Du Plessis', 
         text: 'Training with coach Rener Gracie was a pleasure for me. It helped a lot with my ground-game',
         UFCTitle: 'UFC Middleweight Champ',
         ownedClass: 'BJJ',
-        img: 'https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/3166126.png&w=350&h=254',
-        flag: 'https://a.espncdn.com/combiner/i?img=/i/teamlogos/countries/500/rsa.png&h=40&w=40',
+        img: '/images/fighters/dricus.webp',
+        flag: '/images/fighters/flags/south-africa.webp',
     },
     {
         name: 'Alex Pereira', 
         text: 'Chama 🗿',
         UFCTitle: 'Former Light-Heavyweight Champ',
-        img: 'https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/4705658.png&w=350&h=254',
-        flag: 'https://a.espncdn.com/combiner/i?img=/i/teamlogos/countries/500/bra.png&h=40&w=40',
+        img: '/images/fighters/pereira.webp',
+        flag: '/images/fighters/flags/brazil.webp',
     },
     { 
         name: 'Jon Jones',
         text: 'After training with coach Mike, I plan to stop ducking Top Aspinall and give him his title shot. Thx Coach ❤', 
         UFCTitle: 'Former Heavyweight Champ',
         ownedClass: 'Kickboxing',
-        img: 'https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/2335639.png&w=350&h=254',
-        flag:'https://a.espncdn.com/combiner/i?img=/i/teamlogos/countries/500/usa.png&h=40&w=40', 
+        img: '/images/fighters/jones.webp',
+        flag: '/images/fighters/flags/us.webp',
     },
     { 
         name: 'GSP', 
         text: "It's more than just training here, it's a fight family. I feel ready for war.", 
         UFCTitle: 'UFC Double Champ',
-        img: 'https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/2335659.png&w=350&h=254',
-        flag:'https://a.espncdn.com/combiner/i?img=/i/teamlogos/countries/500/can.png&h=40&w=40', 
+        img: '/images/fighters/gsp.webp',
+        flag: '/images/fighters/flags/canada.webp',
     },
     { 
         name: 'Dustin Poirier', 
         text: 'Explosive sessions, elite-level coaching, and the mindset of a champion.',
         UFCTitle: 'The Diamond',
-        img: 'https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/2506549.png&w=350&h=254',
-        flag: 'https://a.espncdn.com/combiner/i?img=/i/teamlogos/countries/500/usa.png&h=40&w=40',
+        img: '/images/fighters/dustin.webp',
+        flag: '/images/fighters/flags/us.webp',
     },
     { 
         name: 'Alexander Volkanovski', 
         text: 'Every session here feels like a step closer to domination. World-class facility.',
         UFCTitle: 'Former UFC Featherweight Champ',
         ownedClass: 'Judo',
-        img: 'https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/3949584.png&w=350&h=254',
-        flag: 'https://a.espncdn.com/combiner/i?img=/i/teamlogos/countries/500/aus.png&h=40&w=40',
+        img: '/images/fighters/volk.webp',
+        flag: '/images/fighters/flags/aus.webp',
     },
 ];
 
@@ -70,14 +70,14 @@ export default function Testimonials() {
   return <Box
       sx={{
         overflow: 'hidden',
-        whiteSpace: 'nowrap',
+        whiteSpace: 'wrap',
         position: 'relative',
         width: '100%',
         py: 4,
       }}
     >
         <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <HeaderComponent headingText='testimonials' subHeadingText='Fighters experiance after our classes' />
+            <HeaderComponent headingText='testimonials' subHeadingText='Fighters experience after asssad jsadh asjdjdsahj our classes' />
         </Box>
       <Box
         sx={{

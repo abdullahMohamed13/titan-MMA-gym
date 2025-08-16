@@ -49,12 +49,14 @@ export default function FAQ() {
     <Box
       component="section"
       sx={{
-        // bgcolor: "background.paper",
+        background: 'linear-gradient(135deg, #1a1a1a 0%, #222222 100%)',
         py: { xs: 6, md: 8 },
       }}
     >
       <Container>
-        <HeaderComponent headingText="FAQ (Frequently Asked Questions)"/>
+        <HeaderComponent
+        className="my-0 mx-auto"
+        headingText="FAQ (Frequently Asked Questions)"/>
         <Box
           sx={{
             display: "grid",

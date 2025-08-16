@@ -41,20 +41,38 @@
 }
 
 /* Start Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+
+body {
+  --sb-track-color: #1a1a1a;
+  --sb-thumb-color: #e20000;
+  --sb-size: 14px;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+body::-webkit-scrollbar {
+  width: var(--sb-size)
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: var(--color-primary);
+body::-webkit-scrollbar-track {
+  background-color: var(--sb-track-color);
+  transition: background-color 0.3s linear;
+}
+body::-webkit-scrollbar-track:hover {
+  background-color: #fff;
+  border-radius: 5px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 5px;
+  border: 3px solid #ffffff;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color)
+    var(--sb-track-color);
+  }
 }
 /* end Scrollbar */
 
@@ -86,4 +104,22 @@
   --color-secondary: #8E44AD;
   --color-reset: #c0392b;
   --color-reset-hover: #e74c3c;
+}
+
+.star {
+  position: absolute;
+  font-size: 12px;
+  color: gold;
+  animation: fly 3s linear infinite;
+}
+
+@keyframes fly {
+  0% {
+    transform: translate(0, 0) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(50px, -50px) scale(1.2);
+    opacity: 0;
+  }
 }

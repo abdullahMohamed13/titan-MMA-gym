@@ -1,15 +1,16 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useMediaQuery, useTheme } from "@mui/system";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 type HeaderProps = {
-    headingText: string,
+    className?: string,
+    headingText: string | ReactNode,
     headingClassName?: string,
     subHeadingText?: string,
     subHeadingClassName?: string,
 }
 
-export default function HeaderComponent({headingText, subHeadingText, headingClassName, subHeadingClassName}: HeaderProps) {
+export default function HeaderComponent({className, headingText, subHeadingText, headingClassName, subHeadingClassName}: HeaderProps) {
     const theme = useTheme();
     const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));   
     const [isLoaded, setIsLoaded] = useState(false);
@@ -17,14 +18,18 @@ export default function HeaderComponent({headingText, subHeadingText, headingCla
         setIsLoaded(true);
     }, []);
 
-    return <>
+    return <Box
+        sx={{ textAlign: 'center'}}
+        className={className}
+    >
         {/* Heading */}
             <Typography
-                variant={isSmUp ? "h2" : "h3"}
+                variant={isSmUp ? "h2" : "h4"}
                 component="h2"
                 fontWeight={900}
                 className={headingClassName}
                 sx={{
+                    textAlign: 'center',
                     background: 'linear-gradient(45deg, #e20000, #ff6b35, #f1c40f)',
                     backgroundClip: 'text',
                     WebkitBackgroundClip: 'text',
@@ -35,12 +40,13 @@ export default function HeaderComponent({headingText, subHeadingText, headingCla
                     opacity: isLoaded ? 1 : 0
                 }}
             >
-                {headingText.toUpperCase()}
+                
+                {typeof(headingText) === 'string' ? headingText.toUpperCase() : headingText}
             </Typography>
         {/* Sub Heading */}
             <Typography
                 variant="h6"
-                className="subHeadingClassName"
+                className={subHeadingClassName}
                 sx={{
                     color: '#b0b0b0',
                     mb: 6,
@@ -54,5 +60,5 @@ export default function HeaderComponent({headingText, subHeadingText, headingCla
             >
                 {subHeadingText}
             </Typography>
-        </>
+        </Box>
 }

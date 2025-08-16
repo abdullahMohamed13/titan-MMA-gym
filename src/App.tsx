@@ -5,18 +5,16 @@ import './styles/index.css'
 // Components
 import Navbar from './components/NavBar'
 import PageSkeleton from './components/PageSkeleton'
-import ProductsLayout from './layouts/ProductsLayout'
 import Footer from './components/Footer'
 // Pages
 import Home from './pages/home/Home'
-  // Lazily loaded
-const Classes = lazy(() => import('./pages/classes/Classes'))
-const Coaches = lazy(() => import('./pages/coaches/Coaches'))
+// Lazily loaded
+const Branch = lazy(() => import('./pages/branches/Branch'))
+const PricingPage = lazy(() => import('./pages/pricing/PricingPage'))
+const ClassesPage = lazy(() => import('./pages/classes/ClassesPage'))
+const CoachesPage = lazy(() => import('./pages/coaches/CoachesPage'))
 const CoachProfile = lazy(() => import('./pages/coaches/dynamic/CoachProfile'))
 const Students = lazy(() => import('./pages/students/Students'))
-const Events = lazy(() => import('./pages/events/Events'))
-const ProductsPage = lazy(() => import('./pages/products/ProductsPage'))
-const CategoryPage = lazy(() => import('./pages/products/CategoryPage'))
 const ErrorMessage = lazy(() => import('./pages/error-pages/ErrorMessage'))
 const NotFoundPage = lazy(() => import('./pages/error-pages/NotFoundPage'))
 
@@ -25,8 +23,8 @@ const mainPages = [
   {label: 'classes', url: '/classes'},
   {label: 'coaches', url: '/coaches'},
   {label: 'students', url: '/students'},
-  {label: 'store', url: '/products'},
-  {label: 'events', url: '/events'}
+  {label: 'branches', url: 'branches'},
+  {label: 'plans', url: '/pricing'},
 ];
 
 const router = createBrowserRouter([
@@ -49,7 +47,7 @@ const router = createBrowserRouter([
         path: '/classes',
         element: (
           <Suspense fallback={<PageSkeleton />}>
-            <Classes />
+            <ClassesPage />
           </Suspense>
         ),
       },
@@ -57,7 +55,7 @@ const router = createBrowserRouter([
         path: '/classes/:classId',
         element: (
           <Suspense fallback={<PageSkeleton />}>
-            <Classes />
+            <ClassesPage />
           </Suspense>
         ),
       },
@@ -65,7 +63,15 @@ const router = createBrowserRouter([
         path: '/coaches',
         element: (
           <Suspense fallback={<PageSkeleton />}>
-            <Coaches />
+            <CoachesPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/pricing',
+        element: (
+          <Suspense fallback={<PageSkeleton />}>
+            <PricingPage />
           </Suspense>
         ),
       },
@@ -86,10 +92,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/events',
+        path: '/branches/:name',
         element: (
           <Suspense fallback={<PageSkeleton />}>
-            <Events />
+            <Branch />
           </Suspense>
         ),
       },
@@ -98,26 +104,6 @@ const router = createBrowserRouter([
   {
     path: '*',
     element: <NotFoundPage />,
-  },
-  {
-    path: '/products',
-    element: <ProductsLayout />,
-    children: [
-      {
-      index: true, 
-      element: (
-        <Suspense fallback={<PageSkeleton />}>
-            <ProductsPage />
-        </Suspense>
-        )
-    },
-    {
-      path: '/products/:cat',
-      element: <Suspense fallback={<PageSkeleton />}>
-          <CategoryPage />
-        </Suspense>
-    }
-    ],
   },
 ])
 

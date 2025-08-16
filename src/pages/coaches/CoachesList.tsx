@@ -7,13 +7,15 @@ import {
     Chip, 
     Avatar,
     Button,
-    Tooltip
+    Tooltip,
+    Stack
 } from '@mui/material';
 import { initialCoaches } from '../../features/slices/coachesSlice';
 import { Link } from 'react-router-dom';
 import SportsMmaIcon from '@mui/icons-material/SportsMma';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import StarIcon from '@mui/icons-material/Star';
+import StyledButton from '../../components/StyledButton';
 
 export default function CoachesList() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -21,7 +23,7 @@ export default function CoachesList() {
     useEffect(() => {
         setIsLoaded(true);
     }, []);
-
+    
     const getCoachIcon = (coachName: string) => {
         const name = coachName.toLowerCase();
         if (name.includes('khabib') || name.includes('wrestling')) return <SportsMmaIcon sx={{ fontSize: 30, color: '#2ecc71' }} />;
@@ -156,7 +158,7 @@ export default function CoachesList() {
                             >
                                 🎯 Specializations:
                             </Typography>
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                            <Stack direction='row' sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                                 {coach.specials.map((special, index) => (
                                     <Chip 
                                         key={index}
@@ -174,34 +176,18 @@ export default function CoachesList() {
                                         }} 
                                     />
                                 ))}
-                            </Box>
+                            </Stack>
                         </Box>
 
                         {/* Action Buttons */}
-                        <Box sx={{ display: 'flex', gap: 1 }}>
-                            <Button
+                        <Box sx={{ display: 'flex', alignSelf: 'flex-end' , gap: 1 }}>
+                            <StyledButton
                                 component={Link}
                                 to={`/coaches/${encodeURIComponent(coach.name)}`}
-                                variant="contained"
-                                fullWidth
-                                sx={{
-                                    background: 'linear-gradient(45deg, #e20000, #ff6b35)',
-                                    color: 'white',
-                                    fontWeight: 700,
-                                    py: 1.5,
-                                    borderRadius: 2,
-                                    textTransform: 'none',
-                                    boxShadow: '0 8px 25px rgba(226, 0, 0, 0.3)',
-                                    '&:hover': {
-                                        background: 'linear-gradient(45deg, #c10000, #e55a2b)',
-                                        transform: 'translateY(-2px)',
-                                        boxShadow: '0 12px 35px rgba(226, 0, 0, 0.4)'
-                                    },
-                                    transition: 'all 0.3s ease'
-                                }}
-                            >
-                                👨‍🏫 View Profile
-                            </Button>
+                                text='👨‍🏫 View Profile'
+                                borderRad={2}
+                                className="w-full"
+                            />
                             <Tooltip title='Read about him'>
                                 <Button
                                     variant="outlined"

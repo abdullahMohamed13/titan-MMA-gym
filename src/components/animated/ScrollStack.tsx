@@ -252,7 +252,6 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     updateCardTransforms();
 
     return () => {
-      console.log('ScrollStack: Cleaning up');
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }

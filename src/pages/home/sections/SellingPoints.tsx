@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 // MUI Components
-import { Box, Button, Container, Typography, Paper, Stack, Chip, Tooltip } from '@mui/material';
+import { Box, Container, Typography, Paper, Stack, Chip, Tooltip } from '@mui/material';
 // MUI Icons
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import SportsMmaIcon from '@mui/icons-material/SportsMma';
@@ -12,6 +12,7 @@ import SecurityIcon from '@mui/icons-material/Security';
 import SpeedIcon from '@mui/icons-material/Speed';
 // custom components
 import HeaderComponent from '../../../components/HeaderComponent';
+import StyledButton from '../../../components/StyledButton';
 
 export default function SellingPoints() {
   const sellingPoints = [
@@ -30,6 +31,13 @@ export default function SellingPoints() {
       color: '#ff6b35'
     },
     {
+      icon: <GroupsIcon sx={{ fontSize: 50, color: '#009999' }} />,
+      title: 'Fighter Brotherhood',
+      desc: 'Join a community of dedicated fighters. Train with people who share your passion and drive.',
+      highlight: 'Fighter Community',
+      color: '#009999'
+    },
+    {
       icon: <SecurityIcon sx={{ fontSize: 50, color: '#2ecc71' }} />,
       title: 'Safe, Controlled Environment',
       desc: 'Learn proper technique in a safe environment. We prioritize your safety while pushing your limits.',
@@ -37,11 +45,11 @@ export default function SellingPoints() {
       color: '#2ecc71'
     },
     {
-      icon: <GroupsIcon sx={{ fontSize: 50, color: '#3498db' }} />,
-      title: 'Fighter Brotherhood',
-      desc: 'Join a community of dedicated fighters. Train with people who share your passion and drive.',
-      highlight: 'Fighter Community',
-      color: '#3498db'
+      icon: <EmojiEventsIcon sx={{ fontSize: 50, color: '#f1c40f' }} />,
+      title: 'Competition Ready',
+      desc: 'Whether you want to compete or just train like a fighter, we\'ll get you competition-ready.',
+      highlight: 'Compete or Train',
+      color: '#f1c40f',
     },
     {
       icon: <SpeedIcon sx={{ fontSize: 50, color: '#9b59b6' }} />,
@@ -50,13 +58,6 @@ export default function SellingPoints() {
       highlight: 'Fast Results',
       color: '#9b59b6'
     },
-    {
-      icon: <EmojiEventsIcon sx={{ fontSize: 50, color: '#f1c40f' }} />,
-      title: 'Competition Ready',
-      desc: 'Whether you want to compete or just train like a fighter, we\'ll get you competition-ready.',
-      highlight: 'Compete or Train',
-      color: '#f1c40f'
-    }
   ];
 
   return (
@@ -64,8 +65,7 @@ export default function SellingPoints() {
       component="section" 
       sx={{ 
         py: 10, 
-        background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
-        color: 'white'
+        background: 'linear-gradient(135deg, #1a1a1a 0%, #222222 100%)',
       }}
     >
       <Container maxWidth="lg">
@@ -76,13 +76,17 @@ export default function SellingPoints() {
             subHeadingText='Join the ranks of champions. Train where legends are made.' />
 
           {/* Social Proof */}
-          <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" mb={4}>
+          <Stack direction={
+            {
+              xs: 'column',
+              sm: 'row',
+            }
+          } spacing={2} justifyContent="center" alignItems="center" mb={4}>
             <Chip 
               icon={<StarIcon />} 
               label="500+ Active Fighters" 
-              sx={{ 
+              sx={{
                 backgroundColor: 'rgba(255, 255, 255, 0.1)', 
-                color: 'white',
                 border: '1px solid rgba(255, 255, 255, 0.2)'
               }} 
             />
@@ -93,7 +97,6 @@ export default function SellingPoints() {
                   label="15 UFC Fighters" 
                   sx={{ 
                     backgroundColor: 'rgba(255, 255, 255, 0.1)', 
-                    color: 'white',
                     border: '1px solid rgba(255, 255, 255, 0.2)'
                   }} 
                   />
@@ -104,7 +107,6 @@ export default function SellingPoints() {
               label="24/7 Access" 
               sx={{ 
                 backgroundColor: 'rgba(255, 255, 255, 0.1)', 
-                color: 'white',
                 border: '1px solid rgba(255, 255, 255, 0.2)'
               }} 
             />
@@ -138,9 +140,9 @@ export default function SellingPoints() {
                 backdropFilter: 'blur(10px)',
                 transition: 'all 0.3s ease-in-out',
                 '&:hover': {
-                  transform: 'translateY(-8px)',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-                  border: `1px solid ${point.color}`,
+                  transform: 'translateY(-5px)',
+                  boxShadow: '0 15px 35px rgba(0,0,0,0.3)',
+                  border: '1px solid rgba(226, 0, 0, 0.3)'
                 }
               }}
             >
@@ -153,7 +155,6 @@ export default function SellingPoints() {
                 gutterBottom 
                 sx={{ 
                   fontWeight: 700,
-                  color: 'white',
                   mb: 2
                 }}
               >
@@ -191,7 +192,6 @@ export default function SellingPoints() {
             sx={{ 
               fontWeight: 700,
               mb: 3,
-              color: 'white'
             }}
           >
             READY TO BECOME A FIGHTER?
@@ -211,24 +211,13 @@ export default function SellingPoints() {
           </Typography>
           
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
-            <Button 
-              variant="contained" 
-              size="large"
-              sx={{ 
-                px: 4, 
-                py: 2,
-                fontSize: '1.1rem',
-                fontWeight: 700,
-                background: 'linear-gradient(45deg, #e20000, #ff6b35)',
-                '&:hover': {
-                  background: 'linear-gradient(45deg, #c10000, #e55a2b)',
-                  transform: 'scale(1.05)'
-                },
-                transition: 'all 0.3s ease'
-              }}
-            >
-              <Link to='/classes'>BOOK YOUR FIRST CLASS</Link>
-            </Button>
+            <StyledButton
+              text='BOOK YOUR FIRST CLASS'
+              href='/classes'
+              size='large'
+              fontSize='1.1rem'
+              borderRad={1}
+            />
           </Stack>
           
           <Typography 

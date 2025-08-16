@@ -1,15 +1,14 @@
 import { useParams } from 'react-router-dom';
-import { Container, Box, Typography, Link, Chip, Button, Paper, Avatar, Divider } from '@mui/material';
+import { Container, Box, Typography, Link, Chip, Button, Paper, Divider } from '@mui/material';
 import { initialCoaches } from '../../../features/slices/coachesSlice';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import SportsMmaIcon from '@mui/icons-material/SportsMma';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import StarIcon from '@mui/icons-material/Star';
 import { Link as RouterLink } from 'react-router-dom';
+import StyledButton from '../../../components/StyledButton';
+import Stack from './../../../components/animated/Stack';
 
 export default function CoachProfile() {
     const { name } = useParams();
@@ -22,15 +21,6 @@ export default function CoachProfile() {
 
     document.title = `Titan MMA - Coach ${decodedName}`;
     const currentCoach = initialCoaches.find(coach => coach.name === decodedName);
-    console.log(currentCoach!.img);
-
-    const getCoachIcon = (coachName: string) => {
-        const name = coachName.toLowerCase();
-        if (name.includes('khabib') || name.includes('wrestling')) return <SportsMmaIcon sx={{ fontSize: 50, color: '#2ecc71' }} />;
-        if (name.includes('kayla') || name.includes('judo')) return <EmojiEventsIcon sx={{ fontSize: 50, color: '#f1c40f' }} />;
-        if (name.includes('javier') || name.includes('mendez')) return <StarIcon sx={{ fontSize: 50, color: '#e20000' }} />;
-        return <SportsMmaIcon sx={{ fontSize: 50, color: '#ff6b35' }} />;
-    };
 
     const breadcrumbs = [
         <Link 
@@ -41,7 +31,7 @@ export default function CoachProfile() {
             to="/"
             sx={{ color: '#b0b0b0', '&:hover': { color: 'white' } }}
         >
-          Home
+            Home
         </Link>,
         <Link
             component={RouterLink}
@@ -107,11 +97,11 @@ export default function CoachProfile() {
                                     }
                                 }}
                             >
-                                <Box sx={{ p: 6 }}>
+                                <Box sx={{ p: 4 }} textAlign={{xs: 'center', md: 'left'}}>
                                     <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
                                         {/* Image Section */}
                                         <Box sx={{ flexShrink: 0 }}>
-                                            <Box sx={{ position: 'relative' }}>
+                                            <Box sx={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
                                                 <img 
                                                     loading="lazy" 
                                                     src={currentCoach.img} 
@@ -134,20 +124,15 @@ export default function CoachProfile() {
                                                         e.currentTarget.style.borderColor = 'rgba(226, 0, 0, 0.3)';
                                                     }}
                                                 />
-                                                {/* Icon Overlay */}
-                                                <Box
-                                                    sx={{
-                                                        position: 'absolute',
-                                                        top: 16,
-                                                        right: 16,
-                                                        background: 'rgba(0,0,0,0.8)',
-                                                        color: 'white',
-                                                        p: 2,
-                                                        borderRadius: '50%',
-                                                        backdropFilter: 'blur(10px)'
-                                                    }}
-                                                >
-                                                    {getCoachIcon(currentCoach.name)}
+                                                {/* Action Button */}
+                                                <Box sx={{ display: {xs: 'none', md: 'flex'} }}>
+                                                    <StyledButton
+                                                        href={currentCoach.article}
+                                                        target='_blank'
+                                                        text='Read More About Him'
+                                                        borderRad={3}
+                                                        icon={<OpenInNewIcon />}
+                                                    />
                                                 </Box>
                                             </Box>
                                         </Box>
@@ -170,12 +155,24 @@ export default function CoachProfile() {
                                                     Coach {currentCoach.name}
                                                 </Typography>
                                                 <Typography 
-                                                    variant='subtitle1'
-                                                    sx={{mb: 2}}
+                                                    variant='caption'
+                                                    fontSize={18}
                                                 >
-                                                    {currentCoach.title}
+                                                    {currentCoach.title} - {currentCoach.age} Years old
                                                 </Typography>
-                                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
+                                                <Typography component='h3' mt={4}>
+                                                   🎯 Specializations:
+                                                </Typography>
+                                                <Box sx={{ 
+                                                    mt: {xs: 1, md: 0},
+                                                    mb: 3,
+                                                    display: 'flex',
+                                                    justifyContent: {xs: 'center', md: 'flex-start'},
+                                                    alignItems: {xs: 'center', md: 'flex-start'},
+                                                    flexWrap: 'wrap',
+                                                    gap: 1,
+                                                }}
+                                                >
                                                     {currentCoach.specials.map((special, index) => (
                                                         <Chip
                                                             key={index}
@@ -211,35 +208,43 @@ export default function CoachProfile() {
                                                 {currentCoach.description}
                                             </Typography>
 
-                                            <Divider sx={{ my: 4, borderColor: 'rgba(255,255,255,0.1)' }} />
+                                            <Divider className='bg-white' />
 
-                                            {/* Action Buttons */}
-                                            <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-                                                <Button
-                                                    component="a"
+                                            <Typography component='h3' fontSize={20} mt={2} mb={1} align='center' width='100%'>
+                                                   📸 Coach Gallery:
+                                            </Typography>
+                                            
+                                            <Stack
+                                                cardsData={currentCoach.gallery.map((img, index) => ({
+                                                    id: index,
+                                                    img,
+                                                }))}
+                                            />
+                                            {/* .map((img, index) => {
+                                                        return <img src={img} key={index} className='object-cover rounded-lg' />
+                                                    }) */}
+
+                                            {/* <Folder
+                                                className='flex justify-center items-center bg-transparent'
+                                                size={1}
+                                                color='#e20000'
+                                                items={
+                                                    currentCoach.gallery.map((img, index) => {
+                                                        return <img src={img} key={index} className='object-cover rounded-lg' />
+                                                    })
+                                            } /> */}
+
+                                            <Divider sx={{ display: {xs: 'block', md: 'none'}, my: 2, borderColor: 'rgba(255,255,255,0.1)' }} />
+
+                                            {/* Action Buttons on Mobile */}
+                                            <Box sx={{ display: {xs: 'flex', md: 'none'}, justifyContent: 'center', alignItems: 'center' }}>
+                                                <StyledButton
                                                     href={currentCoach.article}
-                                                    target="_blank"
-                                                    variant="contained"
-                                                    startIcon={<OpenInNewIcon />}
-                                                    sx={{
-                                                        background: 'linear-gradient(45deg, #e20000, #ff6b35)',
-                                                        color: 'white',
-                                                        fontWeight: 700,
-                                                        px: 4,
-                                                        py: 2,
-                                                        borderRadius: 3,
-                                                        textTransform: 'none',
-                                                        boxShadow: '0 8px 25px rgba(226, 0, 0, 0.3)',
-                                                        '&:hover': {
-                                                            background: 'linear-gradient(45deg, #c10000, #e55a2b)',
-                                                            transform: 'translateY(-2px)',
-                                                            boxShadow: '0 12px 35px rgba(226, 0, 0, 0.4)'
-                                                        },
-                                                        transition: 'all 0.3s ease'
-                                                    }}
-                                                >
-                                                    Read More About {currentCoach.gender === false ? 'Her' : 'Him'}
-                                                </Button>
+                                                    target='_blank'
+                                                    text='Read More About Him'
+                                                    borderRad={3}
+                                                    icon={<OpenInNewIcon />}
+                                                />
                                             </Box>
                                         </Box>
                                     </Box>
