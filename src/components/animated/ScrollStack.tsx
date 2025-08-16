@@ -13,7 +13,7 @@ export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({
   style = {},
 }) => (
   <div
-    className={`scroll-stack-card relative w-full h-80 my-8 p-12 rounded-[40px] shadow-[0_0_30px_rgba(0,0,0,0.1)] box-border origin-top will-change-transform ${className}`.trim()}
+    className={`scroll-stack-card relative w-full min-h-[320px] sm:min-h-[360px] lg:min-h-[400px] my-4 sm:my-6 lg:my-8 p-4 sm:p-6 md:p-8 lg:p-12 rounded-2xl sm:rounded-3xl lg:rounded-[40px] shadow-[0_0_20px_rgba(0,0,0,0.1)] sm:shadow-[0_0_30px_rgba(0,0,0,0.1)] box-border origin-top will-change-transform ${className}`.trim()}
     style={{
       backfaceVisibility: "hidden",
       transformStyle: "preserve-3d",
@@ -74,6 +74,26 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     return parseFloat(value as string);
   }, []);
 
+  // Responsive distance calculator
+  const getResponsiveDistance = useCallback(() => {
+    if (typeof window === 'undefined') return itemDistance;
+    
+    const width = window.innerWidth;
+    if (width < 640) return itemDistance * 0.6; // Mobile: reduce distance
+    if (width < 1024) return itemDistance * 0.8; // Tablet: slightly reduce
+    return itemDistance; // Desktop: full distance
+  }, [itemDistance]);
+
+  // Responsive stack distance calculator
+  const getResponsiveStackDistance = useCallback(() => {
+    if (typeof window === 'undefined') return itemStackDistance;
+    
+    const width = window.innerWidth;
+    if (width < 640) return itemStackDistance * 0.7; // Mobile: tighter stacking
+    if (width < 1024) return itemStackDistance * 0.85; // Tablet: slightly tighter
+    return itemStackDistance; // Desktop: full distance
+  }, [itemStackDistance]);
+
   const updateCardTransforms = useCallback(() => {
     const scroller = scrollerRef.current;
     if (!scroller || !cardsRef.current.length || isUpdatingRef.current) return;
@@ -86,14 +106,17 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
     const endElement = scroller.querySelector('.scroll-stack-end') as HTMLElement;
     const endElementTop = endElement ? endElement.offsetTop : 0;
+    
+    // Use responsive distances
+    const responsiveStackDistance = getResponsiveStackDistance();
 
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
 
       const cardTop = card.offsetTop;
-      const triggerStart = cardTop - stackPositionPx - (itemStackDistance * i);
+      const triggerStart = cardTop - stackPositionPx - (responsiveStackDistance * i);
       const triggerEnd = cardTop - scaleEndPositionPx;
-      const pinStart = cardTop - stackPositionPx - (itemStackDistance * i);
+      const pinStart = cardTop - stackPositionPx - (responsiveStackDistance * i);
       const pinEnd = endElementTop - containerHeight / 2;
 
       const scaleProgress = calculateProgress(scrollTop, triggerStart, triggerEnd);
@@ -106,7 +129,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         let topCardIndex = 0;
         for (let j = 0; j < cardsRef.current.length; j++) {
           const jCardTop = cardsRef.current[j].offsetTop;
-          const jTriggerStart = jCardTop - stackPositionPx - (itemStackDistance * j);
+          const jTriggerStart = jCardTop - stackPositionPx - (responsiveStackDistance * j);
           if (scrollTop >= jTriggerStart) {
             topCardIndex = j;
           }
@@ -122,9 +145,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       const isPinned = scrollTop >= pinStart && scrollTop <= pinEnd;
       
       if (isPinned) {
-        translateY = scrollTop - cardTop + stackPositionPx + (itemStackDistance * i);
+        translateY = scrollTop - cardTop + stackPositionPx + (responsiveStackDistance * i);
       } else if (scrollTop > pinEnd) {
-        translateY = pinEnd - cardTop + stackPositionPx + (itemStackDistance * i);
+        translateY = pinEnd - cardTop + stackPositionPx + (responsiveStackDistance * i);
       }
 
       const newTransform = {
@@ -174,6 +197,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     onStackComplete,
     calculateProgress,
     parsePercentage,
+    getResponsiveStackDistance,
   ]);
 
   const handleScroll = useCallback(() => {
@@ -229,14 +253,16 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       return;
     }
 
-
     const cards = Array.from(scroller.querySelectorAll(".scroll-stack-card")) as HTMLElement[];
     cardsRef.current = cards;
     const transformsCache = lastTransformsRef.current;
+    
+    // Use responsive distance
+    const responsiveDistance = getResponsiveDistance();
 
     cards.forEach((card, i) => {
       if (i < cards.length - 1) {
-        card.style.marginBottom = `${itemDistance}px`;
+        card.style.marginBottom = `${responsiveDistance}px`;
       }
       card.style.willChange = 'transform, filter';
       card.style.transformOrigin = 'top center';
@@ -251,7 +277,22 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
     updateCardTransforms();
 
+    // Add resize listener for responsive updates
+    const handleResize = () => {
+      // Update card margins on resize
+      const newResponsiveDistance = getResponsiveDistance();
+      cards.forEach((card, i) => {
+        if (i < cards.length - 1) {
+          card.style.marginBottom = `${newResponsiveDistance}px`;
+        }
+      });
+      updateCardTransforms();
+    };
+
+    window.addEventListener('resize', handleResize);
+
     return () => {
+      window.removeEventListener('resize', handleResize);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -283,11 +324,13 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     onStackComplete,
     setupLenis,
     updateCardTransforms,
+    getResponsiveDistance,
+    getResponsiveStackDistance,
   ]);
 
   return (
     <div
-      className={`relative w-full h-full overflow-y-hidden overflow-x-visible  ${className}`.trim()}
+      className={`relative w-full h-full overflow-y-hidden overflow-x-visible ${className}`.trim()}
       ref={scrollerRef}
       style={{
         overscrollBehavior: "contain",
@@ -298,8 +341,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         willChange: 'scroll-position'
       }}
     >
-      {/*  px-20  pt-[20vh] */}
-      <div className="scroll-stack-inner px-20 pt-[15vh] pb-[20rem] min-h-screen">
+      {/* Responsive padding and spacing */}
+      <div className="scroll-stack-inner px-4 sm:px-8 md:px-12 lg:px-20 pt-[10vh] sm:pt-[12vh] lg:pt-[15vh] pb-[15rem] sm:pb-[18rem] lg:pb-[20rem] min-h-screen">
         {children}
         {/* Spacer so the last pin can release cleanly */}
         <div className="scroll-stack-end w-full h-px">

@@ -114,7 +114,7 @@ export default function Routines() {
                         {initialClasses.slice(0, 4).map((routine, index) => (
                             <ScrollStackItem 
                                 key={index}
-                                className="flex justify-between gap-6 p-8" 
+                                className="flex flex-col lg:flex-row justify-between gap-4 sm:gap-6" 
                                 style={{ 
                                     backgroundColor: routine.cardBgColor,
                                     borderRadius: 16,
@@ -124,16 +124,20 @@ export default function Routines() {
                                     boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
                                 }}
                             >
-                                <Box sx={{ flex: 1 }}>
+                                <Box sx={{ flex: 1, minWidth: 0 }}>
                                     {/* Header with Icon */}
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
-                                        {getRoutineIcon(routine.name)}
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 2 }, mb: { xs: 2, sm: 3 } }}>
+                                        <Box sx={{ flexShrink: 0 }}>
+                                            {getRoutineIcon(routine.name)}
+                                        </Box>
                                         <Typography 
                                             variant="h4" 
                                             sx={{ 
                                                 fontWeight: 800,
                                                 color: 'white',
-                                                textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+                                                textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+                                                fontSize: { xs: '1.5rem', sm: '1.75rem', md: '2rem', lg: '2.125rem' },
+                                                lineHeight: 1.2
                                             }}
                                         >
                                             {routine.name}
@@ -145,16 +149,16 @@ export default function Routines() {
                                         variant="body1"
                                         color='textPrimary'
                                         sx={{ 
-                                            mb: 4,
+                                            mb: { xs: 2, sm: 3, md: 4 },
                                             lineHeight: 1.5,
-                                            fontSize: '1.1rem'
+                                            fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' }
                                         }}
                                     >
                                         {routine.description}
                                     </Typography>
 
                                     {/* Coach Info */}
-                                    <Box sx={{ mb: 3 }}>
+                                    <Box sx={{ mb: { xs: 2, sm: 3 } }}>
                                         <Typography 
                                             component={Link}
                                             to={routine.coach.coachUrl}
@@ -164,45 +168,52 @@ export default function Routines() {
                                                 fontWeight: 600,
                                                 display: 'flex',
                                                 alignItems: 'center',
-                                                gap: '10px',
-                                                fontSize: '1.1rem',
+                                                gap: { xs: '6px', sm: '10px' },
+                                                fontSize: { xs: '0.95rem', sm: '1rem', md: '1.1rem' },
                                                 '&:hover': {
                                                     color: '#ff8c42',
                                                     textDecoration: 'underline'
                                                 }
                                             }}
                                         >
-                                            <Avatar sx={{ width: 32, height: 32, fontSize: '0.75rem' }}>
+                                            <Avatar sx={{ 
+                                                width: { xs: 28, sm: 32 }, 
+                                                height: { xs: 28, sm: 32 }, 
+                                                fontSize: '0.75rem' 
+                                            }}>
                                                 <img
-                                                src={routine.coach.coachImg}
-                                                alt={`${routine.coach.coachName} Photo`}
-                                                loading="lazy"
-                                                className='hover:scale-[1.1]'
-                                                style={{
-                                                    width: '100%',
-                                                    height: '100%',
-                                                    objectFit: 'cover',
-                                                    transition: 'transform 0.3s ease'
-                                                }}
-                                            />
+                                                    src={routine.coach.coachImg}
+                                                    alt={`${routine.coach.coachName} Photo`}
+                                                    loading="lazy"
+                                                    className='hover:scale-[1.1]'
+                                                    style={{
+                                                        width: '100%',
+                                                        height: '100%',
+                                                        objectFit: 'cover',
+                                                        transition: 'transform 0.3s ease'
+                                                    }}
+                                                />
                                             </Avatar>
-                                            Coach: {routine.coach.coachName}
+                                            <Box component="span" sx={{ minWidth: 0 }}>
+                                                Coach: {routine.coach.coachName}
+                                            </Box>
                                         </Typography>
                                     </Box>
 
                                     {/* Target Audience */}
-                                    <Box sx={{ mb: 4 }}>
+                                    <Box sx={{ mb: { xs: 2, sm: 4 } }}>
                                         <Typography 
                                             variant="h6" 
                                             sx={{ 
                                                 color: 'white', 
-                                                mb: 2,
-                                                fontWeight: 600
+                                                mb: { xs: 1, sm: 2 },
+                                                fontWeight: 600,
+                                                fontSize: { xs: '1rem', sm: '1.125rem', md: '1.25rem' }
                                             }}
                                         >
                                             🎯 Perfect For:
                                         </Typography>
-                                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 0.5, sm: 1 } }}>
                                             {routine.targetAudience.map((ta, index) => (
                                                 <Chip 
                                                     key={index}
@@ -212,6 +223,8 @@ export default function Routines() {
                                                         backgroundColor: 'rgba(226, 0, 0, 0.3)',
                                                         border: '1px solid rgba(226, 0, 0, 0.5)',
                                                         fontWeight: 600,
+                                                        fontSize: { xs: '0.75rem', sm: '0.8125rem' },
+                                                        height: { xs: 24, sm: 32 },
                                                         '&:hover': {
                                                             backgroundColor: 'rgba(226, 0, 0, 0.5)'
                                                         }
@@ -221,19 +234,26 @@ export default function Routines() {
                                             ))}
                                         </Box>
                                     </Box>
-
-                                    
                                 </Box>
 
-                                {/* Image */}
-                                <Box sx={{ flexShrink: 0 }}>
+                                {/* Image - Responsive sizing */}
+                                <Box sx={{ 
+                                    flexShrink: 0, 
+                                    width: '100%',
+                                    maxWidth: { xs: '100%', lg: 250 },
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    mt: { xs: 2, lg: 0 }
+                                }}>
                                     <img
                                         loading="lazy"
                                         src={routine.imgSrc} 
                                         className='rounded-2xl border-4 border-red-500/50 shadow-2xl'
                                         style={{
-                                            width: 250,
-                                            height: 200,
+                                            width: '100%',
+                                            maxWidth: 250,
+                                            height: 'auto',
+                                            aspectRatio: '5/4',
                                             objectFit: 'cover',
                                             transition: 'all 0.3s ease'
                                         }}
