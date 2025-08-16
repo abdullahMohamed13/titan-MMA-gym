@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "flowbite";
 
 @layer base {
   * {
@@ -94,8 +93,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 :root {
-  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
-  
   --color-bg: #213547;
   --color-text: #ffffff;
   --color-card: #2d4961;
