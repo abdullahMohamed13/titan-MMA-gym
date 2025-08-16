@@ -12,9 +12,6 @@ import {
 } from '@mui/material';
 import { initialCoaches } from '../../features/slices/coachesSlice';
 import { Link } from 'react-router-dom';
-import SportsMmaIcon from '@mui/icons-material/SportsMma';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import StarIcon from '@mui/icons-material/Star';
 import StyledButton from '../../components/StyledButton';
 
 export default function CoachesList() {
@@ -23,14 +20,6 @@ export default function CoachesList() {
     useEffect(() => {
         setIsLoaded(true);
     }, []);
-    
-    const getCoachIcon = (coachName: string) => {
-        const name = coachName.toLowerCase();
-        if (name.includes('khabib') || name.includes('wrestling')) return <SportsMmaIcon sx={{ fontSize: 30, color: '#2ecc71' }} />;
-        if (name.includes('kayla') || name.includes('judo')) return <EmojiEventsIcon sx={{ fontSize: 30, color: '#f1c40f' }} />;
-        if (name.includes('javier') || name.includes('mendez')) return <StarIcon sx={{ fontSize: 30, color: '#e20000' }} />;
-        return <SportsMmaIcon sx={{ fontSize: 30, color: '#ff6b35' }} />;
-    };
 
     return (
         <>
@@ -74,21 +63,6 @@ export default function CoachesList() {
                                 e.currentTarget.style.transform = 'scale(1)';
                             }}
                         />
-                        {/* Overlay with Icon */}
-                        <Box
-                            sx={{
-                                position: 'absolute',
-                                top: 16,
-                                right: 16,
-                                background: 'rgba(0,0,0,0.8)',
-                                color: 'white',
-                                p: 1,
-                                borderRadius: '50%',
-                                backdropFilter: 'blur(10px)'
-                            }}
-                        >
-                            {getCoachIcon(coach.name)}
-                        </Box>
                     </Box>
 
                     <CardContent sx={{ p: 3 }}>
