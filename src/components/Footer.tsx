@@ -22,7 +22,7 @@ const partners = [
 ]
 
 export default function Footer() {
-    return <Box component='footer' className= 'py-5 md:py-8 px-7'>
+    return <Box component='footer' className='py-5 md:py-8 px-7'>
             <Box component='section'
                 sx={{
                     display: 'flex',
@@ -159,7 +159,7 @@ export default function Footer() {
             </Box>
 
             {/* Bottom section */}
-            <Box component='section' className="bg-gradient-to-r from-gray-900 to-gray-800 py-8 px-4">
+            <Box component='section' className="py-8 px-4">
                 {/* Main Content */}
                 <Box className="flex flex-col md:flex-row items-center justify-between gap-4">
                     {/* Copyright Text */}
