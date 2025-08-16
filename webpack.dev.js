@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const flowbiteReact = require("flowbite-react/plugin/webpack");
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 
@@ -45,7 +44,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
-    flowbiteReact(),
     new Dotenv({
       path: './.env',
       systemvars: true
