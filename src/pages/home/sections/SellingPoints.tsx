@@ -206,13 +206,13 @@ export default function SellingPoints() {
               mx: 'auto'
             }}
           >
-            Book your first class today and experience the difference. 
+            Curious about what we offer? Explore our classes and see how we can help you get started. 
             No experience required - we'll teach you everything from the ground up.
           </Typography>
           
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
             <StyledButton
-              text='BOOK YOUR FIRST CLASS'
+              text='EXPLORE OUR CLASSES'
               href='/classes'
               size='large'
               fontSize='1.1rem'
