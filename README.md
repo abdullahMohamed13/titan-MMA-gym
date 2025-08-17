@@ -3,7 +3,7 @@ ok ok chill! This is a mock-up booking system that allows you to book MMA (Mixed
 
 ## ✨UI features:
 
-1. Home Page
+###1. Home Page
 - Hero section with promo video
 - Overview of what the gym offers (About the gym, Routines, FAQ section, Newsletter Subscription section)
 
