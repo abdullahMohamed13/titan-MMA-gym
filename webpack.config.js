@@ -12,6 +12,9 @@ module.exports = {
     clean: true
   },
   resolve: {
+    fallback: {
+      process: require.resolve("process/browser"),
+    },
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
