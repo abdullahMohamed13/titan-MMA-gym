@@ -49,11 +49,16 @@ module.exports = {
       systemvars: true
     }),
     new webpack.DefinePlugin({
-      'process.env': {
-        VITE_CLERK_PUBLISHABLE_KEY: JSON.stringify(process.env.VITE_CLERK_PUBLISHABLE_KEY),
-        VITE_CONVEX_URL: JSON.stringify(process.env.VITE_CONVEX_URL)
-      }
-    })
+      'process.env': JSON.stringify({
+        REACT_APP_CLERK_PUBLISHABLE_KEY: process.env.VITE_CLERK_PUBLISHABLE_KEY,
+        REACT_APP_CONVEX_URL: process.env.VITE_CONVEX_URL,
+        VITE_CLERK_PUBLISHABLE_KEY: process.env.VITE_CLERK_PUBLISHABLE_KEY,
+        VITE_CONVEX_URL: process.env.VITE_CONVEX_URL,
+        NODE_ENV: process.env.NODE_ENV || 'production'
+      }),
+      'process.browser': JSON.stringify(true),
+      'global': 'globalThis'
+    }),
   ],
   devServer: {
     static: [
