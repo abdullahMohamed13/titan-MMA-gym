@@ -1,9 +1,21 @@
 # WHAT THE HELL IS TITAN MMA GYM? 😡😡
-ok ok chill! This is a mock-up booking system that allows you to book MMA (Mixed Martial Arts) classes. You sign in via our beautiful sign in page and boom, now you can book any class that you want. You will also receive confirmation via email. After that you can head to your dashboard and switch to any other plan you want [or cancel your current plan 😭].
+ok ok chill! This is a mock-up booking system that allows you to book MMA (Mixed Martial Arts) classes.
+
+## Class Booking Flow:
+You sign in via our beautiful sign in page and boom, now you can book any class that you want. You will also receive confirmation via email. After that you can head to your dashboard and switch to any other plan you want [or cancel your current plan 😭].
+
+## 🚀 Live Demo
+👉 [Check it out here](titan-mma-gym.netlify.app)
+
+<!--### Home Page
+![Home Screenshot](./assets/home.png)
+
+### Booking Flow
+![Booking Demo](./assets/demo.gif)-->
 
 ## ✨UI features:
 
-###1. Home Page
+1. Home Page
 - Hero section with promo video
 - Overview of what the gym offers (About the gym, Routines, FAQ section, Newsletter Subscription section)
 
