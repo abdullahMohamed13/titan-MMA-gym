@@ -1,8 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-require('dotenv').config({ path: '.env.local' });
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+require('dotenv').config({ path: '.env.local' });
 
 module.exports = {
   entry: './src/index.tsx',
@@ -12,12 +12,26 @@ module.exports = {
     clean: true
   },
   resolve: {
-    fallback: {
-      process: require.resolve("process/browser"),
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    extensionAlias: {
+      '.js': ['.js', '.ts', '.tsx'],
+      '.mjs': ['.mjs', '.js', '.ts', '.tsx']
     },
-    extensions: ['.ts', '.tsx', '.js'],
+    fallback: {
+      "process": require.resolve("process/browser"),
+      "util": require.resolve("util/"),
+      "path": require.resolve("path-browserify"),
+      "os": require.resolve("os-browserify/browser"),
+      "crypto": require.resolve("crypto-browserify"),
+      "stream": require.resolve("stream-browserify"),
+      "buffer": require.resolve("buffer/"),
+      "fs": false,
+      "net": false,
+      "tls": false
+    },
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      'process/browser': require.resolve('process/browser'),
+      '@': path.resolve(__dirname, 'src')
     }
   },
   module: {
@@ -52,14 +66,16 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      process: 'process/browser'
+      process: 'process/browser',
+      Buffer: ['buffer', 'Buffer']
     }),
-  new webpack.DefinePlugin({
-    'process.env.VITE_CLERK_PUBLISHABLE_KEY': JSON.stringify(process.env.VITE_CLERK_PUBLISHABLE_KEY),
-    'process.env.VITE_CONVEX_URL': JSON.stringify(process.env.VITE_CONVEX_URL),
-    // You can also define the process.env object if you need other env vars
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
-  }),
+    new webpack.DefinePlugin({
+      'process.env.VITE_CLERK_PUBLISHABLE_KEY': JSON.stringify(process.env.VITE_CLERK_PUBLISHABLE_KEY),
+      'process.env.VITE_CONVEX_URL': JSON.stringify(process.env.VITE_CONVEX_URL),
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
+      'process.browser': JSON.stringify(true),
+      'global': 'globalThis'
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
