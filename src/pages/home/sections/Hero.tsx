@@ -13,7 +13,7 @@ export default function Hero() {
     <section className="relative flex items-center justify-start min-h-[100vh] py-10 overflow-hidden">
       {/* Background Video */}
       <video
-        className="absolute inset-0 w-full h-full object-cover"
+        className="opacity-0 md:opacity-100 absolute inset-0 w-full h-full object-cover"
         muted
         autoPlay
         loop
