@@ -5,7 +5,7 @@ ok ok chill! This is a mock-up booking system that allows you to book MMA (Mixed
 You sign in via our beautiful sign in page and boom, now you can book any class that you want. You will also receive confirmation via email. After that you can head to your dashboard and switch to any other plan you want [or cancel your current plan 😭].
 
 ## 🚀 Live Demo
-👉 [Check it out here](titan-mma-gym.netlify.app)
+👉 [Check it out here](https://titan-mma-gym.netlify.app)
 
 <!--### Home Page
 ![Home Screenshot](./assets/home.png)
