@@ -38,7 +38,6 @@ export default function Branch() {
     return (
         <Box
             sx={{
-                minHeight: '100vh',
                 background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%)',
                 py: 6,
                 position: 'relative',

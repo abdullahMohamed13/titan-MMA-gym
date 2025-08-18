@@ -3,6 +3,10 @@ import { Container, Typography, Box, Chip } from '@mui/material';
 import CoachesList from "./CoachesList";
 import HeaderComponent from '../../components/HeaderComponent';
 import Testimonials from './Testimonials';
+import FadeInOnScroll from '../../components/FadeInOnScroll';
+import { motion } from 'framer-motion';
+
+const MotionBox = motion(Box)
 
 export default function CoachesPage() {
     document.title = 'Titan MMA - Coaches';
@@ -13,7 +17,10 @@ export default function CoachesPage() {
     }, []);
 
     return (
-        <Box
+        <MotionBox
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             sx={{
                 minHeight: '100vh',
                 background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%)',
@@ -100,9 +107,13 @@ export default function CoachesPage() {
                 >
                     <CoachesList />
                 </Box>
-                
-                <Testimonials />
+
+                {/* Animated Testimonials section */}
+                <FadeInOnScroll>
+                    <Testimonials />
+                </FadeInOnScroll>
+
             </Container>
-        </Box>
+        </MotionBox>
     );
 }

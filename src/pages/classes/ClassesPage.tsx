@@ -5,6 +5,7 @@ import { Box } from '@mui/material';
 import HeaderComponent from '../../components/HeaderComponent';
 import ClassesList from './ClassesList';
 import Gallery from './Gallery';
+import FadeInOnScroll from '../../components/FadeInOnScroll';
 
 export default function ClassesPage() {
     document.title = 'Titan MMA - Classes';
@@ -36,10 +37,10 @@ export default function ClassesPage() {
                         headingText='ELITE MMA CLASSES'
                         subHeadingText='Train with UFC champions and world-class coaches. Choose your path to greatness.'
                     />
-                    <ClassesList isLoaded={isLoaded} />
+                    <FadeInOnScroll><ClassesList isLoaded={isLoaded} /></FadeInOnScroll>
                 </Box>
 
                 {/* Gallery Section */}
-                <Gallery />
+                <FadeInOnScroll><Gallery /></FadeInOnScroll>
         </Box>
 }

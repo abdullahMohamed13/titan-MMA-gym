@@ -8,6 +8,7 @@ import PageSkeleton from "../../components/PageSkeleton";
 import StyledButton from "../../components/StyledButton";
 // MUI Components
 import { Container, Box, Typography } from "@mui/material";
+import { motion } from "framer-motion";
 
 type FighterApi = Record<
   | 'category'
@@ -37,6 +38,8 @@ const fetchFightersData = async (): Promise<FighterApi[]> => {
 
     return Object.values(rawData).slice(0, 10) as FighterApi[];
 }
+
+const MotionBox = motion(Box)
 
 export default function Students() {
     document.title = 'Titan MMA - Students';
@@ -138,8 +141,11 @@ export default function Students() {
             }
         })
     )
-
-    return <Box
+    
+    return <MotionBox
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
                 sx={{
                     pt: 6,
                     pb: 3,
@@ -180,5 +186,5 @@ export default function Students() {
                         <StyledButton text="CHECK OUR CLASSES & JOIN THEM NOW" href="/classes" />
                     </Box>
                 </Container>
-        </Box>
+        </MotionBox>
 }
