@@ -16,6 +16,7 @@ export default function PricingPage() {
         headingText='Choose your training plan'
         subHeadingText="Pick the training program that matches your goals, skill level, and fighting style.
         Each designed to build real MMA skills"
+        subHeadingClassName="px-3"
     />
     <Container>
         <PricingList />
