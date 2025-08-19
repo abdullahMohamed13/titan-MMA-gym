@@ -168,7 +168,7 @@ export default function Footer() {
                     </Typography>
 
                     {/* Built By Section */}
-                    <Box className="flex items-center gap-3">
+                    <Box className="flex flex-col md:flex-row items-center gap-3">
                         <Typography component='p' className="text-sm md:text-base">
                             Built By:
                         </Typography>
