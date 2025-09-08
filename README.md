@@ -31,12 +31,7 @@ You sign in via our beautiful sign in page and boom, now you can book any class 
 
 4. Students Page
 - Table that holds our top gym members & achievements, that's fetched from an external API using ReactQuery
-
-## 🎯Target Users:
-- MMA enthusiasts, current and potential students
-- Visitors interested in training or purchasing MMA gear
-- Gym members looking to stay updated with events and class schedules
-
+<hr />
 ## 🛠️Tech Stack:
 - Frontend: React.js + TailwindCSS + Typescript
 - UI Library: Material UI (MUI)
