@@ -31,7 +31,7 @@ You sign in via our beautiful sign in page and boom, now you can book any class 
 
 4. Students Page
 - Table that holds our top gym members & achievements, that's fetched from an external API using ReactQuery
-<hr />
+
 ## 🛠️Tech Stack:
 - Frontend: React.js + TailwindCSS + Typescript
 - UI Library: Material UI (MUI)
