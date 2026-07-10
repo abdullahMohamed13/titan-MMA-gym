@@ -563,12 +563,6 @@ export default function Gallery() {
                         )}
                     </Box>
                 </Fade>
-                    {/* <Typography
-                        className='font-semibold z-[2000]'
-                        variant="h5" 
-                    >
-                        READY TO START YOUR TRAINING?
-                    </Typography> */}
             </Backdrop>
         </Box>
     );

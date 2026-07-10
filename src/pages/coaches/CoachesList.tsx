@@ -28,6 +28,8 @@ export default function CoachesList() {
                     key={coach.id}
                     sx={{
                         height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
                         background: 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
                         border: '2px solid rgba(255, 255, 255, 0.1)',
                         backdropFilter: 'blur(10px)',
@@ -65,20 +67,10 @@ export default function CoachesList() {
                         />
                     </Box>
 
-                    <CardContent sx={{ p: 3 }}>
+                    <CardContent sx={{ p: 3, flex: 1, display: 'flex', flexDirection: 'column' }}>
                         {/* Header */}
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-                            <Avatar
-                                sx={{
-                                    width: 50,
-                                    height: 50,
-                                    background: 'linear-gradient(45deg, #e20000, #ff6b35)',
-                                    fontSize: '1.2rem',
-                                    fontWeight: 700
-                                }}
-                            >
-                                {coach.name.split(' ').map(n => n[0]).join('')}
-                            </Avatar>
+
                             <Box sx={{ flex: 1 }}>
                                 <Typography 
                                     variant="h5" 
@@ -154,11 +146,11 @@ export default function CoachesList() {
                         </Box>
 
                         {/* Action Buttons */}
-                        <Box sx={{ display: 'flex', alignSelf: 'flex-end' , gap: 1 }}>
+                        <Box sx={{ display: 'flex', mt: 'auto', pt: 3, gap: 1 }}>
                             <StyledButton
                                 component={Link}
                                 to={`/coaches/${encodeURIComponent(coach.name)}`}
-                                text='👨‍🏫 View Profile'
+                                text='View Profile'
                                 borderRad={2}
                                 className="w-full"
                             />

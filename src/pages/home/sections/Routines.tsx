@@ -6,13 +6,14 @@ import { initialClasses } from '../../../features/slices/classesSlice';
 // React bits
 import ScrollStack, { ScrollStackItem } from '../../../components/animated/ScrollStack'
 // MUI Components
-import { Box, Container } from "@mui/system";
+import { Box, Container, Stack } from "@mui/system";
 import { Chip, Typography, Paper, Avatar } from '@mui/material';
 // MUI Icons
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import SportsMmaIcon from '@mui/icons-material/SportsMma';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import StyledButton from '@/components/StyledButton';
 
 export default function Routines() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -284,6 +285,16 @@ export default function Routines() {
                     >
                         READY TO START YOUR JOURNEY?
                     </Typography>
+
+                    <Stack direction={{ xs: 'column', sm: 'row' }} sx={{marginTop: "20px"}} spacing={2} justifyContent="center">
+                      <StyledButton
+                        text='CHECK OUR PLANS'
+                        href='/pricing'
+                        size='large'
+                        fontSize='1.1rem'
+                        borderRad={1}
+                      />
+                    </Stack>
                 </Box>
             </Container>
         </Box>

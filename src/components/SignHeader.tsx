@@ -1,6 +1,5 @@
 import { SignInButton , useAuth, UserButton } from '@clerk/clerk-react';
 import StyledButton from "./StyledButton";
-import { Login } from "@mui/icons-material"; 
 
 export default function SignInHeader({ iconSize }: { iconSize: 'small' | 'large' }) {
   const { isLoaded, isSignedIn } = useAuth();
@@ -49,10 +48,9 @@ export default function SignInHeader({ iconSize }: { iconSize: 'small' | 'large'
         >
           <StyledButton
             sx={{
-              padding: { xs: '7px 15px', md: '13px 20px' },
+              padding: { xs: '7px 15px', md: '10px 18px' },
             }}
-            text="Sign In"
-            icon={<Login />}
+            text="Get Started"
             fontSize="16px"
             borderRad={2}
           />

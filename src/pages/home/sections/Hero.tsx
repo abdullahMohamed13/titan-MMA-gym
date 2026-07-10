@@ -10,10 +10,10 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative flex items-center justify-start min-h-[100vh] py-10 overflow-hidden">
+    <section className="relative flex items-center min-h-[calc(100vh-112px)] py-10 overflow-hidden">
       {/* Background Video */}
       <video
-        className="opacity-0 md:opacity-100 absolute inset-0 w-full h-full object-cover"
+        className="opacity-100 absolute inset-0 w-full h-full object-cover"
         muted
         autoPlay
         loop
@@ -21,7 +21,7 @@ export default function Hero() {
         poster="images/titan-gym-2.webp"
         aria-label="Background training video"
       >
-        <source src="videos/hero.mp4" type="video/mp4" />
+        <source src="https://res.cloudinary.com/uwwnts8h/video/upload/v1783671274/titan-mma-hero.mp4" type="video/mp4" />
         {/* Fallback for very old browsers */}
         <div className="flex items-center justify-center w-full h-full bg-black text-white">
           <img
@@ -37,17 +37,10 @@ export default function Hero() {
       {/* Overlay with gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
       
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className={`absolute top-20 left-20 w-32 h-32 border-2 border-red-500/30 rounded-full animate-pulse transition-all duration-1000 ${isLoaded ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}></div>
-        <div className={`absolute bottom-32 right-32 w-24 h-24 border-2 border-orange-500/30 rounded-full animate-pulse transition-all duration-1000 delay-300 ${isLoaded ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}></div>
-        <div className={`absolute top-1/2 right-1/4 w-16 h-16 border-2 border-yellow-500/30 rounded-full animate-pulse transition-all duration-1000 delay-600 ${isLoaded ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}></div>
-      </div>
-      
       <div className="relative z-10 flex flex-col gap-8 items-start justify-center h-full px-6 sm:px-10 md:px-16 max-w-4xl">
         
         {/* Main Content Card */}
-        <div className={`w-full bg-black/70 backdrop-blur-md rounded-3xl p-8 md:p-12 flex flex-col gap-8 text-left border border-white/10 shadow-2xl transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div className={`w-full backdrop-blur-md rounded-3xl p-8 md:p-12 flex flex-col gap-8 text-left shadow-2xl transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           
           {/* Logo Section */}
           <div className="flex items-center relative justify-center md:mb-4">
@@ -73,17 +66,23 @@ export default function Hero() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6
               *:p-4 *:rounded-xl *:border *:bg-white/5 *:border-white/10">
               <div>
-                <SportsMmaIcon sx={{mb: 2, fontSize: '24px'}} color='primary' />
+								<div className="mb-2">
+									<img src="/images/icons/location.png" alt="" className="mx-auto w-8 h-8 md:w-10 md:h-10 object-contain" />
+                </div>
                 <p className="text-white font-semibold">150+ Locations</p>
                 <p className="text-gray-300 text-sm">Worldwide Network</p>
               </div>
               <div>
-                <div className="text-2xl mb-2">🏆</div>
+								<div className="mb-2">
+									<img src="/images/icons/boxing-gloves.png" alt="" className="mx-auto w-8 h-8 md:w-10 md:h-10 object-contain" />
+                </div>
                 <p className="text-white font-semibold">UFC Champions</p>
                 <p className="text-gray-300 text-sm">Trained Here</p>
               </div>
               <div>
-                <div className="text-2xl mb-2">⚡</div>
+								<div className="mb-2">
+									<img src="/images/icons/flash.png" alt="" className="mx-auto w-8 h-8 md:w-10 md:h-10 object-contain" />
+                </div>
                 <p className="text-white font-semibold">24/7 Access</p>
                 <p className="text-gray-300 text-sm">Train Anytime</p>
               </div>
