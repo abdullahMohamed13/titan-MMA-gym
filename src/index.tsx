@@ -17,11 +17,8 @@ import { dark, neobrutalism  } from '@clerk/themes'
 import { ConvexReactClient } from 'convex/react'
 
 // Keys
-// const PUBLISHABLE_KEY = process.env.VITE_CLERK_PUBLISHABLE_KEY;
-// const CONVEX_URL = process.env.VITE_CONVEX_URL;
-// Keys - use standard environment variable names for webpack
-const PUBLISHABLE_KEY = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY || process.env.VITE_CLERK_PUBLISHABLE_KEY;
-const CONVEX_URL = process.env.REACT_APP_CONVEX_URL || process.env.VITE_CONVEX_URL;
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+const CONVEX_URL = import.meta.env.VITE_CONVEX_URL;
 
 if (!PUBLISHABLE_KEY) {
   throw new Error('Missing Publishable Key - check your .env file and webpack config')
