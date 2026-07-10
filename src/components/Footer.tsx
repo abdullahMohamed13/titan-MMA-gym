@@ -21,6 +21,12 @@ const partners = [
     },
 ]
 
+const developerLinks = [
+    { icon: LinkedIn, href: 'https://linkedin.com/in/abdallah-aziz-999b54295', label: 'LinkedIn Profile', title: "Developer's LinkedIn Account" },
+    { icon: GitHub, href: 'https://github.com/abdullahMohamed13', label: 'GitHub Profile', title: "Developer's GitHub Account" },
+    { icon: Person, href: 'https://abdallah-aziz.vercel.app/', label: 'Portfolio Website', title: "Developer's Portfolio Website" },
+]
+
 export default function Footer() {
     return <Box component='footer' className='py-5 md:py-8 px-7'>
             <Box component='section'
@@ -180,95 +186,21 @@ export default function Footer() {
                                     >
                                     Abdallah_Aziz
                                 </Typography>
-
-                                {/* Stars */}
-                                {[...Array(5)].map((_, i) => (
-                                    <span
-                                        key={i}
-                                        className="star"
-                                        style={{
-                                            top: `${Math.random() * 30 - 10}px`,
-                                            left: `${Math.random() * 150}px`,
-                                            animationDelay: `${Math.random() * 2}s`
-                                        }}
-                                    >
-                                        ★
-                                    </span>
-                                ))}
                             </div>
                             <Box className="flex gap-3 *:relative *:inline-block">
-                                <Link
-                                    href="https://linkedin.com/in/abdallah-aziz-999b54295" 
-                                    target="_blank"
-                                    title="Developer's LinkedIn Account"
-                                    rel="noopener noreferrer"
-                                    className="transition-transform duration-300 transform hover:scale-110"
-                                    aria-label="LinkedIn Profile"
-                                >
-                                    <LinkedIn className="w-5 h-5" />
-                                    {/* Stars */}
-                                    {[...Array(5)].map((_, i) => (
-                                        <span
-                                            key={i}
-                                            className="star"
-                                            style={{
-                                                top: `${Math.random() * 30 - 10}px`,
-                                                left: `${Math.random() * 150}px`,
-                                                animationDelay: `${Math.random() * 2}s`
-                                            }}
-                                        >
-                                            ★
-                                        </span>
-                                    ))}
-                                </Link>
-                                <Link
-                                    href="https://github.com/abdullahMohamed13" 
-                                    target="_blank"
-                                    title="Developer's GitHub Account"
-                                    rel="noopener noreferrer"
-                                    className="transition-transform duration-300 transform hover:scale-110"
-                                    aria-label="GitHub Profile"
-                                >
-                                    <GitHub className="w-5 h-5" />
-                                    {/* Stars */}
-                                    {[...Array(5)].map((_, i) => (
-                                        <span
-                                            key={i}
-                                            className="star"
-                                            style={{
-                                                top: `${Math.random() * 30 - 10}px`,
-                                                left: `${Math.random() * 150}px`,
-                                                animationDelay: `${Math.random() * 2}s`
-                                            }}
-                                        >
-                                            ★
-                                        </span>
-                                    ))}
-                                </Link>
-                                <Link
-                                    href="https://abdallah-aziz.vercel.app/" 
-                                    target="_blank"
-                                    title="Developer's Portfolio Website"
-                                    rel="noopener noreferrer"
-                                    className="transition-transform duration-300 transform hover:scale-110"
-                                    aria-label="Portfolio Website"
-                                >
-                                    <Person className="w-5 h-5" />
-                                    {/* Stars */}
-                                    {[...Array(5)].map((_, i) => (
-                                        <span
-                                            key={i}
-                                            className="star"
-                                            style={{
-                                                top: `${Math.random() * 30 - 10}px`,
-                                                left: `${Math.random() * 150}px`,
-                                                animationDelay: `${Math.random() * 2}s`
-                                            }}
-                                        >
-                                            ★
-                                        </span>
-                                    ))}
-                                </Link>
+                                {developerLinks.map((link, i) => (
+                                    <Link
+                                        key={i}
+                                        href={link.href}
+                                        target="_blank"
+                                        title={link.title}
+                                        rel="noopener noreferrer"
+                                        className="transition-transform duration-300 transform hover:scale-110"
+                                        aria-label={link.label}
+                                    >
+                                        <link.icon className="w-5 h-5" />
+                                    </Link>
+                                ))}
                             </Box>
                         </Box>
                     </Box>
