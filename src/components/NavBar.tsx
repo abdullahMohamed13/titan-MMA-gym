@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box } from '@mui/material';
@@ -14,15 +14,45 @@ interface NavBarProps {
   pages: PagesProps[]
 }
 export default function NavBar({ pages }: NavBarProps) {
-  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const BRAND_SENTENCES = [
+      "WHERE CHAMPIONS ARE FORGED",
+      "THE ORIGINAL MMA FITNESS NETWORK",
+      "150+ LOCATIONS WORLDWIDE",
+      "WHERE UFC LEGENDS TRAIN",
+      "STRENGTH • DISCIPLINE • HONOR",
+      "THE FASTEST-GROWING MMA BRAND ON THE PLANET",
+      "TRAIN LIKE A CHAMPION",
+      "BUILT DIFFERENT • TRAIN DIFFERENT",
+  ];
 
   return (
     <>
+      {/* Brand Marquee */}
+      <div className="w-full max-w-full overflow-hidden bg-[var(--color-primary)] py-2">
+          <div className="inline-flex w-max animate-marquee hover:[animation-play-state:paused]">
+              <div className="flex flex-shrink-0 items-center">
+                  {BRAND_SENTENCES.map((sentence, i) => (
+                      <span key={i} className="mx-6 lg:mx-8 text-sm font-bold text-white tracking-widest whitespace-nowrap">
+                          {sentence}
+                      </span>
+                  ))}
+              </div>
+              <div className="flex flex-shrink-0 items-center">
+                  {BRAND_SENTENCES.map((sentence, i) => (
+                      <span key={`dup-${i}`} className="mx-6 lg:mx-8 text-sm font-bold text-white tracking-widest whitespace-nowrap">
+                          {sentence}
+                      </span>
+                  ))}
+              </div>
+          </div>
+      </div>
+
       {/* Top bar */}
-      <Box className="border-b border-border">
+      <Box className="border-y border-y-border">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+          <div className="flex justify-between py-2 md:py-4">
             <div className="flex">
               <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                 <img
@@ -72,26 +102,23 @@ export default function NavBar({ pages }: NavBarProps) {
           <div className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {pages.map((page, index) => (
-                <a
+                <Link
                   key={index}
+                  to={page.url}
                   onClick={(e) => {
-                    e.preventDefault();
-                    // e.stopPropagation(); // Prevent any parent handlers
                     if (page.url === 'branches') {
+                      e.preventDefault();
                       const element = document.getElementById('branches');
                       if (element) {
                         element.scrollIntoView({ behavior: 'smooth' });
                       }
-                    } else {
-                      navigate(page.url);
                     }
                     setIsMenuOpen(false);
-                    return false;
                   }}
                   className="block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200"
                 >
                   {typeof(page.label) === 'string' ? page.label.toUpperCase() : page.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -103,22 +130,21 @@ export default function NavBar({ pages }: NavBarProps) {
         <ul className="flex space-x-8">
           {pages.map((page, index) => (
             <li key={index}>
-              <a
+              <Link
+                to={page.url}
                 onClick={(e) => {
-                  e.preventDefault();
                   if (page.url === 'branches') {
+                    e.preventDefault();
                     const element = document.getElementById('branches');
                     if (element) {
                       element.scrollIntoView({ behavior: 'smooth' });
                     }
-                  } else {
-                    navigate(page.url);
                   }
                 }}
                 className="text-sm font-bold text-white hover:text-white/80 transition-colors duration-200"
               >
                 {typeof(page.label) === 'string' ? page.label.toUpperCase() : page.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

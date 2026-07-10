@@ -103,11 +103,13 @@ body::-webkit-scrollbar-thumb {
   --color-reset-hover: #e74c3c;
 }
 
-.star {
-  position: absolute;
-  font-size: 12px;
-  color: gold;
-  animation: fly 3s linear infinite;
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@utility animate-marquee {
+  animation: marquee 80s linear infinite;
 }
 
 @keyframes fly {
